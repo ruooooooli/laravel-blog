@@ -1,0 +1,22 @@
+.login-body-bg {
+    background-image: url('/assets/images/login-background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.backend-body-bg {
+    background-image: url('/assets/images/backend-background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 4em;
+}
+
+.login-form {
+    padding-top: 5%;
+}
+
+input[type='file'] {
+    display: none;
+}

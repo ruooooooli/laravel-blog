@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 class UploadController extends Controller
 {
     protected $file;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
     protected $allowedExtensions = ['png', 'jpg', 'gif', 'jpeg'];
 
     public function uploadImage(Request $request)
@@ -73,7 +76,10 @@ class UploadController extends Controller
             $constraint->aspectRatio();
             $constraint->upsize();
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
         $image->save();
     }
 }

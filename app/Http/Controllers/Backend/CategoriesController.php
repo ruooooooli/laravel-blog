@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\Contracts\CategoryRepository;
+=======
+
+use App\Http\Requests;
+use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\CategoryUpdateRequest;
+use App\Repositories\Contracts\CategoryRepository;
+use App\Http\Controllers\Controller;
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
 
 class CategoriesController extends Controller
 {

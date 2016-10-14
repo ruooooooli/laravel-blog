@@ -23898,22 +23898,11 @@ $.fn.visibility.settings = {
             self.initSemantic();
             self.initBackendLogin();
             self.initCreateUpdateCategory();
-<<<<<<< HEAD
-            self.initSelectDeleteCategory();
-            self.initDeleteCategory();
-            self.initCreateUpdatePost();
-            self.initCreateUpdateTag();
-            self.initDeleteTag();
-            self.initSelectDeleteTag();
-            self.initPrefix();
-            self.initMarked();
-=======
             self.initDeleteCategory();
             self.initPrefix();
             self.initMarked();
             self.initCreateUpdatePost();
             self.initSelectDeleteCategory();
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
             self.initUploadImage();
         },
         initPrefix : function () {
@@ -24081,45 +24070,6 @@ $.fn.visibility.settings = {
                 });
             });
         },
-<<<<<<< HEAD
-        initDeleteTag : function () {
-            $('.delete-tag-btn').on('click', function () {
-                var that = $(this);
-                swal({
-                    title: "确定要删除这个标签吗?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#FF4949",
-                    confirmButtonText: "删除",
-                    cancelButtonText: "取消",
-                    closeOnConfirm: false,
-                    closeOnCancel: true
-                }, function(isConfirm) {
-                    if (isConfirm) {
-                        $.post(that.data('url'), {
-                            '_method'   : 'DELETE',
-                            '_token'    : Config.token,
-                        }, function (response) {
-                            if (response.code == 'success') {
-                                swal({
-                                    'title'  : response.message,
-                                    'type'  : 'success',
-                                }, function () {
-                                    $.pjax.reload('body');
-                                });
-                            } else {
-                                swal({
-                                    title   : response.message,
-                                    type    : 'warning',
-                                });
-                            }
-                        }, 'json');
-                    }
-                });
-            });
-        },
-=======
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
         initSelectDeleteCategory : function () {
             $('.select-delete-btn').on('click', function () {
                 var deleteIds = new Array();
@@ -24131,21 +24081,13 @@ $.fn.visibility.settings = {
 
                 if (deleteIds.length == 0) {
                     swal({
-<<<<<<< HEAD
-                        title   : '请选择要删除的项目!',
-=======
                         title   : '请选择要删除的分类!',
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
                         type    : 'warning',
                     });
                     return false;
                 }
                 swal({
-<<<<<<< HEAD
-                    title: "确定要删除所选的项目吗?",
-=======
                     title: "确定要删除所选的分类吗?",
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#FF4949",
@@ -24178,47 +24120,7 @@ $.fn.visibility.settings = {
                 });
             });
         },
-<<<<<<< HEAD
-        initSelectDeleteTag : function () {
-
-        },
-        initCreateUpdateTag     : function () {
-            $('.create-update-tag-btn').on('click', function () {
-                var that = $(this);
-                var name = $.trim($('#name').val());
-
-                if (name == '') {
-                    swal({
-                        title   : '请输入标签名称!',
-                        type    : 'warning',
-                    });
-                    return false;
-                }
-
-                if (!that.hasClass('loading')) {
-                    that.addClass('loading').addClass('disabled');
-                }
-
-                that.closest('form').ajaxSubmit({
-                    dataType    : 'json',
-                    success     : function (response) {
-                        if (response.code == 'success') {
-                            window.location.href = that.data('url');
-                        } else {
-                            that.removeClass('loading').removeClass('disabled');
-                            swal({
-                                title   : response.message,
-                                type    : 'warning',
-                            });
-                        }
-                    }
-                });
-            });
-        },
-        initCreateUpdatePost    : function () {
-=======
         initCreateUpdatePost  : function () {
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
             $('.create-update-post-btn').on('click', function () {
                 var that        = $(this);
                 var title       = $.trim($('#title').val());
@@ -24248,11 +24150,8 @@ $.fn.visibility.settings = {
                     return false;
                 }
 
-<<<<<<< HEAD
-=======
                 console.log(markdown);
 
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
                 if (!that.hasClass('loading')) {
                     that.addClass('loading').addClass('disabled');
                 }

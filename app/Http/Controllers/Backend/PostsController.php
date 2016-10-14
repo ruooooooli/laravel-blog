@@ -3,20 +3,33 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+=======
+
+use App\Http\Requests;
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Repositories\Contracts\PostRepository;
 use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\TagRepository;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\Controller;
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
 
 class PostsController extends Controller
 {
     protected $repository;
+<<<<<<< HEAD
 
     protected $category;
 
+=======
+    protected $category;
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
     protected $tag;
 
     public function __construct(PostRepository $repository, CategoryRepository $category, TagRepository $tag)

@@ -31,6 +31,7 @@
             self.initSemantic();
             self.initBackendLogin();
             self.initCreateUpdateCategory();
+<<<<<<< HEAD
             self.initSelectDeleteCategory();
             self.initDeleteCategory();
             self.initCreateUpdatePost();
@@ -39,6 +40,13 @@
             self.initSelectDeleteTag();
             self.initPrefix();
             self.initMarked();
+=======
+            self.initDeleteCategory();
+            self.initPrefix();
+            self.initMarked();
+            self.initCreateUpdatePost();
+            self.initSelectDeleteCategory();
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
             self.initUploadImage();
         },
         initPrefix : function () {
@@ -206,6 +214,7 @@
                 });
             });
         },
+<<<<<<< HEAD
         initDeleteTag : function () {
             $('.delete-tag-btn').on('click', function () {
                 var that = $(this);
@@ -242,6 +251,8 @@
                 });
             });
         },
+=======
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
         initSelectDeleteCategory : function () {
             $('.select-delete-btn').on('click', function () {
                 var deleteIds = new Array();
@@ -253,13 +264,21 @@
 
                 if (deleteIds.length == 0) {
                     swal({
+<<<<<<< HEAD
                         title   : '请选择要删除的项目!',
+=======
+                        title   : '请选择要删除的分类!',
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
                         type    : 'warning',
                     });
                     return false;
                 }
                 swal({
+<<<<<<< HEAD
                     title: "确定要删除所选的项目吗?",
+=======
+                    title: "确定要删除所选的分类吗?",
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#FF4949",
@@ -292,6 +311,7 @@
                 });
             });
         },
+<<<<<<< HEAD
         initSelectDeleteTag : function () {
 
         },
@@ -329,6 +349,9 @@
             });
         },
         initCreateUpdatePost    : function () {
+=======
+        initCreateUpdatePost  : function () {
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
             $('.create-update-post-btn').on('click', function () {
                 var that        = $(this);
                 var title       = $.trim($('#title').val());
@@ -358,6 +381,11 @@
                     return false;
                 }
 
+<<<<<<< HEAD
+=======
+                console.log(markdown);
+
+>>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
                 if (!that.hasClass('loading')) {
                     that.addClass('loading').addClass('disabled');
                 }

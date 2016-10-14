@@ -22,11 +22,7 @@
             <i class="large tag icon"></i>标签管理
             <div class="menu">
                 <a class="item" href="{{ route('backend::tag.index') }}">标签列表</a>
-<<<<<<< HEAD
                 <a class="item" href="{{ route('backend::tag.create') }}">添加标签</a>
-=======
-                <a class="item" href="{{ route('backend::tag.create') }}">标签文章</a>
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
             </div>
         </div>
         <div class="ui simple dropdown item">

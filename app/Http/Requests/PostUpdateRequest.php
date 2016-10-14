@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 class PostUpdateRequest extends Request
 {
-<<<<<<< HEAD
     public function authorize()
     {
         return true;
@@ -30,27 +29,6 @@ class PostUpdateRequest extends Request
             'title.unique'              => '文章标题已经存在!',
             'category_id.required'      => '请选择文章分类!',
             'markdown-source.required'  => '请输入文章内容!',
-=======
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
         ];
     }
 }

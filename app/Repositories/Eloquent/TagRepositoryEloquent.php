@@ -6,10 +6,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\Contracts\TagRepository;
 use App\Models\Tag;
-<<<<<<< HEAD
-=======
-use App\Validators\TagValidator;
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
 
 class TagRepositoryEloquent extends BaseRepository implements TagRepository
 {
@@ -42,7 +38,6 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
     public function getSearchResult($request)
     {
         $this->applyConditions($this->getSearchWhere($request));
-<<<<<<< HEAD
 
         return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
     }
@@ -61,8 +56,4 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
             $item->delete();
         }
     }
-=======
-        return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
-    }
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
 }

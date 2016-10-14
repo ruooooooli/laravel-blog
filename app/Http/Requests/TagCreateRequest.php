@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TagCreateRequest extends FormRequest
 {
-<<<<<<< HEAD
     public function authorize()
     {
         return true;
@@ -26,27 +25,6 @@ class TagCreateRequest extends FormRequest
             'name.min'      => '标签名称最小2个字符!',
             'name.max'      => '标签名称最大32个字符!',
             'name.unique'   => '标签名称已经存在!',
-=======
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
         ];
     }
 }

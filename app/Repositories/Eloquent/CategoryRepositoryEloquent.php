@@ -59,10 +59,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     public function getSearchResult($request)
     {
         $this->applyConditions($this->getSearchWhere($request));
-<<<<<<< HEAD
 
-=======
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
         return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
     }
 

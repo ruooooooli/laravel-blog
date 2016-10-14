@@ -4,27 +4,11 @@ namespace App\Http\Requests;
 
 class CategoryCreateRequest extends Request
 {
-<<<<<<< HEAD
-=======
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
     public function authorize()
     {
         return true;
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
->>>>>>> 67a1585626508a6ca026aa8da6f7993786cf8de4
     public function rules()
     {
         return [

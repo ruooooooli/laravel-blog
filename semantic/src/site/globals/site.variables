@@ -1,0 +1,12 @@
+/*******************************
+     User Global Variables
+*******************************/
+@primaryColor       : @blue;
+@blue               : #20A0FF;
+@red                : #FF4949;
+@green              : #13CE66;
+@importGoogleFonts  : false;
+@imagePath          : '/assets/images';
+@fontPath           : '/assets/fonts';
+
+@focusedFormBorderColor: @primaryColor;

@@ -82,8 +82,8 @@ class LoginController extends Controller
     private function createDefaultUser()
     {
         return User::create([
-            'username'  => 'admin',
-            'email'     => 'admin@fun-x.cn',
+            'username'  => 'ruooooooli',
+            'email'     => 'ruooooooli@gmail.com',
             'password'  => bcrypt('admin'),
         ]);
     }

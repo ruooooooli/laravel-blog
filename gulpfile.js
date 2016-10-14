@@ -15,12 +15,12 @@ require('laravel-elixir-vue');
 
 elixir(mix => {
     mix
-        .copy('semantic/dist/semantic.js', 'resources/assets/js/semantic.js')
-        .copy('semantic/dist/semantic.css', 'resources/assets/css/semantic.css')
-        .copy('semantic/dist/semantic.min.js', 'resources/assets/js/semantic.min.js')
-        .copy('semantic/dist/semantic.min.css', 'resources/assets/css/semantic.min.css')
-        .copy('semantic/src/themes/default/assets/fonts/*', 'public/assets/fonts/')
-        .copy('semantic/src/themes/default/assets/images/*', 'public/assets/images/')
+        // .copy('semantic/dist/semantic.js', 'resources/assets/js/semantic.js')
+        // .copy('semantic/dist/semantic.css', 'resources/assets/css/semantic.css')
+        // .copy('semantic/dist/semantic.min.js', 'resources/assets/js/semantic.min.js')
+        // .copy('semantic/dist/semantic.min.css', 'resources/assets/css/semantic.min.css')
+        // .copy('semantic/src/themes/default/assets/fonts/*', 'public/assets/fonts/')
+        // .copy('semantic/src/themes/default/assets/images/*', 'public/assets/images/')
 
         // .copy('node_modules/jquery/dist/jquery.min.js', 'resources/assets/js/jquery.min.js')
 

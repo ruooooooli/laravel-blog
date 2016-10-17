@@ -52,4 +52,15 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
 
         return Post::create($array);
     }
+
+    public function batchDelete($request)
+    {
+        $idString   = $request->input('idstring');
+        $idArray    = explode(',', $idString);
+        $items      = $this->findWhereIn('id', array_values($idArray));
+
+        foreach ($items as $item) {
+            $item->delete();
+        }
+    }
 }

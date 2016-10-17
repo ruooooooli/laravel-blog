@@ -13,23 +13,23 @@ use App\Repositories\Contracts\TagRepository;
 
 class PostsController extends Controller
 {
-    protected $repository;
+    protected $post;
 
     protected $category;
 
     protected $tag;
 
-    public function __construct(PostRepository $repository, CategoryRepository $category, TagRepository $tag)
+    public function __construct(PostRepository $post, CategoryRepository $category, TagRepository $tag)
     {
-        $this->repository   = $repository;
-        $this->category     = $category;
-        $this->tag          = $tag;
+        $this->post     = $post;
+        $this->category = $category;
+        $this->tag      = $tag;
     }
 
     public function index(Request $request)
     {
         $key    = $request->input('key', '');
-        $posts  = $this->repository->getSearchResult($request);
+        $posts  = $this->post->getSearchResult($request);
 
         return view('backend.post.index', compact('posts', 'key'));
     }
@@ -45,7 +45,7 @@ class PostsController extends Controller
     public function store(PostCreateRequest $request)
     {
         try {
-            $post = $this->repository->create($request->all());
+            $post = $this->post->create($request->all());
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
@@ -55,7 +55,7 @@ class PostsController extends Controller
 
     public function edit($id)
     {
-        $post = $this->repository->find($id);
+        $post = $this->post->find($id);
 
         return view('posts.edit', compact('post'));
     }
@@ -63,7 +63,7 @@ class PostsController extends Controller
     public function update(PostUpdateRequest $request, $id)
     {
         try {
-            $post = $this->repository->update($id, $request->all());
+            $post = $this->post->update($id, $request->all());
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
@@ -73,6 +73,23 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        try {
+            $deleted = $this->post->delete($id);
+        } catch (\Exception $e) {
+            return errorJson($e->getMessage());
+        }
+
+        return successJson('文章删除成功!');
+    }
+
+    public function batch(Request $request)
+    {
+        try {
+            $this->post->batchDelete($request);
+        } catch (\Exception $e) {
+            return errorJson();
+        }
+
+        return successJson('文章批量删除成功!');
     }
 }

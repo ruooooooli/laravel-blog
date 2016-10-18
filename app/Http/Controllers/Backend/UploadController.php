@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 class UploadController extends Controller
 {
     protected $file;
-
     protected $allowedExtensions = ['png', 'jpg', 'gif', 'jpeg'];
 
     public function uploadImage(Request $request)

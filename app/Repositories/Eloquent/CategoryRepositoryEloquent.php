@@ -19,6 +19,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * 重写父类的删除方法
+     */
     public function delete($id)
     {
         $category = $this->find($id);
@@ -30,6 +33,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         return $category->delete();
     }
 
+    /**
+     * 处理批量删除
+     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');
@@ -45,6 +51,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         }
     }
 
+    /**
+     * 获取查询条件
+     */
     public function getSearchWhere($request)
     {
         $where = array();
@@ -56,6 +65,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         return $where;
     }
 
+    /**
+     * 获取搜索结果
+     */
     public function getSearchResult($request)
     {
         $this->applyConditions($this->getSearchWhere($request));
@@ -63,6 +75,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
     }
 
+    /**
+     * 获取分类列表 在添加文章的时候使用
+     */
     public function getCategoryList()
     {
         return $this->model->where('display', '=', 'Y')->get()->pluck('name', 'id');

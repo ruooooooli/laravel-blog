@@ -20,6 +20,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * 获取查询条件
+     */
     public function getSearchWhere($request)
     {
         $where = array();
@@ -31,6 +34,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return $where;
     }
 
+    /**
+     * 获取搜索结果
+     */
     public function getSearchResult($request)
     {
         $this->applyConditions($this->getSearchWhere($request));
@@ -38,6 +44,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
     }
 
+    /**
+     * 处理创建文章 重写了父类的方法
+     */
     public function create(array $input)
     {
         $array      = array(
@@ -53,6 +62,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return Post::create($array);
     }
 
+    /**
+     * 处理批量删除
+     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');

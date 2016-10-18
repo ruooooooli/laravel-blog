@@ -19,11 +19,17 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * 获取标签列表 在添加文章的时候使用
+     */
     public function getTagList()
     {
         return $this->model->get()->pluck('name', 'id');
     }
 
+    /**
+     * 获取查询条件
+     */
     public function getSearchWhere($request)
     {
         $where = array();
@@ -35,6 +41,9 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
         return $where;
     }
 
+    /**
+     * 获取搜索结果
+     */
     public function getSearchResult($request)
     {
         $this->applyConditions($this->getSearchWhere($request));
@@ -42,6 +51,9 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
         return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
     }
 
+    /**
+     * 处理批量删除
+     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');

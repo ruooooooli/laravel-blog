@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Requests\TagCreateRequest;
 use App\Http\Requests\TagUpdateRequest;
@@ -11,17 +12,17 @@ use App\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {
-    protected $repository;
+    protected $tag;
 
-    public function __construct(TagRepository $repository)
+    public function __construct(TagRepository $tag)
     {
-        $this->repository = $repository;
+        $this->tag = $tag;
     }
 
     public function index(Request $request)
     {
         $key    = $request->input('key', '');
-        $tags   = $this->repository->getSearchResult($request);
+        $tags   = $this->tag->getSearchResult($request);
 
         return view('backend.tag.index', compact('tags', 'key'));
     }
@@ -34,7 +35,7 @@ class TagsController extends Controller
     public function store(TagCreateRequest $request)
     {
         try {
-            $tag = $this->repository->create($request->all());
+            $tag = $this->tag->create($request->all());
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
@@ -44,7 +45,7 @@ class TagsController extends Controller
 
     public function edit($id)
     {
-        $tag = $this->repository->find($id);
+        $tag = $this->tag->find($id);
 
         return view('backend.tag.edit', compact('tag'));
     }
@@ -52,7 +53,7 @@ class TagsController extends Controller
     public function update(TagUpdateRequest $request, $id)
     {
         try {
-            $tag = $this->repository->update($request->all(), $id);
+            $tag = $this->tag->update($request->all(), $id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
@@ -63,11 +64,22 @@ class TagsController extends Controller
     public function destroy($id)
     {
         try {
-            $deleted = $this->repository->delete($id);
+            $deleted = $this->tag->delete($id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
 
         return successJson('标签删除成功!');
+    }
+
+    public function batch(Request $request)
+    {
+        try {
+            $this->tag->batchDelete($request);
+        } catch (\Exception $e) {
+            return errorJson();
+        }
+
+        return successJson('标签批量删除成功!');
     }
 }

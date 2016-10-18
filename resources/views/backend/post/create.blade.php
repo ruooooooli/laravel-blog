@@ -23,8 +23,8 @@
     </div>
     <div class="field">
         <div class="ui top attached tabular menu">
-            <a class="active item" data-tab="markdown-source" id="markdown-source-tab">编写 Markdown</a>
-            <a class="item" data-tab="markdown-view" id="markdown-view-tab">预览 Markdown</a>
+            <a class="active item" data-tab="markdown-source" id="markdown-source-tab">Markdown</a>
+            <a class="item" data-tab="markdown-view" id="markdown-view-tab">预览</a>
         </div>
         <div class="ui bottom attached active tab segment" data-tab="markdown-source">
             <div class="field">

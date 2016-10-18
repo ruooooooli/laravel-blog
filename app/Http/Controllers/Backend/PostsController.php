@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
@@ -14,9 +15,7 @@ use App\Repositories\Contracts\TagRepository;
 class PostsController extends Controller
 {
     protected $post;
-
     protected $category;
-
     protected $tag;
 
     public function __construct(PostRepository $post, CategoryRepository $category, TagRepository $tag)

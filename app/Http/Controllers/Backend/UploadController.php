@@ -4,14 +4,28 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 
+use Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * 文件上传
+ */
 class UploadController extends Controller
 {
+    /**
+     * 文件对象
+     */
     protected $file;
+
+    /**
+     * 允许上传的文件类型
+     */
     protected $allowedExtensions = ['png', 'jpg', 'gif', 'jpeg'];
 
+    /**
+     * 处理上传
+     */
     public function uploadImage(Request $request)
     {
         try {
@@ -23,6 +37,9 @@ class UploadController extends Controller
         return successJson('文件上传成功!', $result);
     }
 
+    /**
+     * 真正的上传
+     */
     private function doUpload(Request $request)
     {
         if (!$request->hasFile(config('blog.uploadFileKey'))) {
@@ -35,6 +52,9 @@ class UploadController extends Controller
         return $this->saveImageToLocal(1440);
     }
 
+    /**
+     * 检测文件类型
+     */
     private function checkAllowedExtensionsOrFail()
     {
         $extension = strtolower($this->file->getClientOriginalExtension());
@@ -44,6 +64,9 @@ class UploadController extends Controller
         }
     }
 
+    /**
+     * 保存文件到本地
+     */
     private function saveImageToLocal($resize, $filename = '')
     {
         $uploadFolder   = trim(config('blog.uploadFolder'), '/');
@@ -51,23 +74,29 @@ class UploadController extends Controller
         $destinationPath= public_path($folderName);
         $extension      = $this->file->getClientOriginalExtension() ?: 'png';
         $saveName       = $filename ?: str_random(16).'.'.$extension;
+        $fullName       = $destinationPath.$saveName;
+        $publicName     = $folderName.$saveName;
+
         $this->file->move($destinationPath, $saveName);
-        $this->resize($destinationPath, $saveName, $resize);
+        $this->resize($fullName, $resize);
 
         return array(
-            'fullPath'      => $destinationPath.$saveName,
-            'webPath'       => asset($folderName.$saveName),
-            'markdownPath'  => '![file]('.asset($folderName.$saveName).')',
+            'fullPath'      => $fullName,
+            'webPath'       => asset($publicName),
+            'markdownPath'  => '![file]('.asset($publicName).')',
         );
     }
 
-    private function resize($path, $name, $resize)
+    /**
+     * 调整图片大小
+     */
+    private function resize($path, $resize)
     {
         if ($this->file->getClientOriginalExtension() == 'gif') {
             return false;
         }
 
-        $image = \Image::make($path.$name);
+        $image = Image::make($path);
         $image->resize($resize, null, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();

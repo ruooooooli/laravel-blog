@@ -12,12 +12,29 @@ use App\Repositories\Contracts\PostRepository;
 use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\TagRepository;
 
+/**
+ * 文章控制器
+ */
 class PostsController extends Controller
 {
+    /**
+     * 文章
+     */
     protected $post;
+
+    /**
+     * 分类
+     */
     protected $category;
+
+    /**
+     * 标签
+     */
     protected $tag;
 
+    /**
+     * 构造方法
+     */
     public function __construct(PostRepository $post, CategoryRepository $category, TagRepository $tag)
     {
         $this->post     = $post;
@@ -25,6 +42,9 @@ class PostsController extends Controller
         $this->tag      = $tag;
     }
 
+    /**
+     * 显示文章列表
+     */
     public function index(Request $request)
     {
         $key    = $request->input('key', '');
@@ -33,6 +53,9 @@ class PostsController extends Controller
         return view('backend.post.index', compact('posts', 'key'));
     }
 
+    /**
+     * 显示添加的页面
+     */
     public function create()
     {
         $categories = $this->category->getCategoryList();
@@ -41,6 +64,9 @@ class PostsController extends Controller
         return view('backend.post.create', compact('categories', 'tags'));
     }
 
+    /**
+     * 处理添加文章
+     */
     public function store(PostCreateRequest $request)
     {
         try {
@@ -52,6 +78,9 @@ class PostsController extends Controller
         return successJson('文章创建成功!');
     }
 
+    /**
+     * 显示编辑页面
+     */
     public function edit($id)
     {
         $post = $this->post->find($id);
@@ -59,6 +88,9 @@ class PostsController extends Controller
         return view('posts.edit', compact('post'));
     }
 
+    /**
+     * 更新文章
+     */
     public function update(PostUpdateRequest $request, $id)
     {
         try {
@@ -70,6 +102,9 @@ class PostsController extends Controller
         return successJson('文章修改成功!');
     }
 
+    /**
+     * 删除文章
+     */
     public function destroy($id)
     {
         try {
@@ -81,6 +116,9 @@ class PostsController extends Controller
         return successJson('文章删除成功!');
     }
 
+    /**
+     * 批量删除文章
+     */
     public function batch(Request $request)
     {
         try {

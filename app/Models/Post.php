@@ -15,7 +15,15 @@ class Post extends Model implements Transformable
     /**
      * 可填充属性
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'title',
+        'content',
+        'content_origin',
+        'sort',
+        'published_at',
+    ];
 
     /**
      * 获取文章所属分类

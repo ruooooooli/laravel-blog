@@ -10,6 +10,10 @@
         {!! Form::text('title', null, ['id' => 'title', 'placeholder' => '请输入文章标题']) !!}
     </div>
     <div class="field">
+        {!! Form::label('sort', '请输入文章序号', ['for' => 'sort']) !!}
+        {!! Form::number('sort', null, ['id' => 'sort', 'placeholder' => '请输入文章序号']) !!}
+    </div>
+    <div class="field">
         {!! Form::label('category_id', '请选择文章分类', ['for' => 'category_id']) !!}
         <div class="field">
             {!! Form::select('category_id', $categories, null, ['class'  => 'ui fluid search dropdown']) !!}
@@ -18,7 +22,7 @@
     <div class="field">
         {!! Form::label('tags', '请选择文章标签', ['for' => 'tags']) !!}
         <div class="field">
-            {!! Form::select('tags', $tags, null, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
+            {!! Form::select('tags[]', $tags, null, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
         </div>
     </div>
     <div class="field">

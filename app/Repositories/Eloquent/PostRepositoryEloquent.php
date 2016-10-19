@@ -6,6 +6,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\Contracts\PostRepository;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Bridge\Markdown;
 
 class PostRepositoryEloquent extends BaseRepository implements PostRepository
@@ -49,17 +50,21 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
      */
     public function create(array $input)
     {
-        $array      = array(
+        $tag    = Tag::whereIn('id', $input['tags'])->get();
+        $array  = array(
             'user_id'       => \Auth::id(),
             'category_id'   => $input['category_id'],
             'title'         => $input['title'],
             'content'       => (new Markdown())->markdownToHtml($input['markdown-source']),
             'content_origin'=> $input['markdown-source'],
-            'sort'          => $input['sort'],
+            'sort'          => $input['sort'] ?: 255,
             'published_at'  => $input['published_at'],
         );
 
-        return Post::create($array);
+        $post = Post::create($array);
+        $post->tags()->attach($input['tags']);
+
+        return $post;
     }
 
     /**

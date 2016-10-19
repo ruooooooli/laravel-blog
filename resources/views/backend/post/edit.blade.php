@@ -18,7 +18,7 @@
     <div class="field">
         {!! Form::label('tags', '请选择文章标签', ['for' => 'tags']) !!}
         <div class="field">
-            {!! Form::select('tags', $tags, null, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
+            {!! Form::select('tags[]', $tags, null, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
         </div>
     </div>
     <div class="field">

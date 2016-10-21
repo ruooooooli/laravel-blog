@@ -25,6 +25,9 @@ class Post extends Model implements Transformable
         'published_at',
     ];
 
+    /**
+     * 日期
+     */
     protected $dates = [
         'published_at', 'created_at', 'updated_at',
     ];

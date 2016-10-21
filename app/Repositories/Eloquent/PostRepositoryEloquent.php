@@ -31,7 +31,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         $where = array();
         if ($request->has('key')) {
             $key = $request->input('key', '');
-            array_push($where, array('title', 'like', "{$key}"));
+            array_push($where, array('title', 'like', "%{$key}%"));
         }
 
         return $where;

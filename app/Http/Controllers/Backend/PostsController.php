@@ -83,9 +83,11 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = $this->post->find($id);
+        $categories = $this->category->getCategoryList();
+        $tags       = $this->tag->getTagList();
+        $post       = $this->post->find($id);
 
-        return view('posts.edit', compact('post'));
+        return view('backend.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**

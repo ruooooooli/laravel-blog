@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof ModelNotFoundException) {
-
+            return redirect()->back();
         }
 
         if ($exception instanceof ValidationException) {

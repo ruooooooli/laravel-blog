@@ -36,7 +36,6 @@
 
         <div class="field">
             {!! Form::select('tags[]', $tags, 1, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
-
         </div>
     </div>
 

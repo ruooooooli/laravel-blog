@@ -3,38 +3,55 @@
 @section('title', '文章列表')
 
 @section('content')
-<table class="ui celled table">
+
+@include('layout.backend.table_search', ['route' => 'backend::post.index'])
+
+<table class="ui celled table center aligned list">
     <thead>
         <tr>
-            <th>Header</th>
-            <th>Header</th>
-            <th>Header</th>
+            <th>
+                <div class="ui master checkbox">
+                    <input type="checkbox">
+                </div>
+            </th>
+            <th>文章标题</th>
+            <th>发布时间</th>
+            <th>阅读数</th>
+            <th>排序</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-        </tr>
+        @if(count($posts))
+            @foreach($posts as $key => $value)
+                <tr>
+                    <td>
+                        <div class="ui child checkbox" data-id="{{ $value->id }}">
+                            <input type="checkbox" class="select-checkbox">
+                        </div>
+                    </td>
+                    <td>{{ $value->title }}</td>
+                    <td>{{ $value->published_at->toDateString() }}</td>
+                    <td>{{ $value->view_count }}</td>
+                    <td>{{ $value->sort }}</td>
+                    <td>
+                        <div class="ui buttons">
+                            <a class="ui green icon button" href="{{ route('backend::post.edit', $value->id) }}">
+                                <i class="write arrow icon"></i>
+                            </a>
+                            <a class="ui red icon button delete-post-btn" data-url="{{ route('backend::post.destroy', $value->id) }}">
+                                <i class="remove arrow icon"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        @else
+            @include('layout.backend.table_noresult', ['colspan' => 6])
+        @endif
     </tbody>
     <tfoot>
-        <tr>
-            <th colspan="3">
-            <div class="ui right floated pagination menu">
-                <a class="icon item">
-                    <i class="left chevron icon"></i>
-                </a>
-                <a class="item">1</a>
-                <a class="item">2</a>
-                <a class="item">3</a>
-                <a class="item">4</a>
-                <a class="icon item">
-                    <i class="right chevron icon"></i>
-                </a>
-            </div>
-        </th>
-        </tr>
+        @include('layout.backend.table_paginate', ['value' => $posts, 'colspan' => 6])
     </tfoot>
 </table>
 @endsection

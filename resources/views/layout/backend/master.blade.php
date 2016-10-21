@@ -30,4 +30,6 @@
 
     <script src="{{ elixir('assets/js/scripts.js') }}" charset="utf-8"></script>
 
+    @yield('javascripts-inpage')
+
 @endsection

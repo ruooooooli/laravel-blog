@@ -8,6 +8,8 @@ use App\Repositories\Contracts\PostRepository;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Bridge\Markdown;
+use Carbon\Carbon;
+use Auth;
 
 class PostRepositoryEloquent extends BaseRepository implements PostRepository
 {
@@ -50,15 +52,16 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
      */
     public function create(array $input)
     {
-        $tag    = Tag::whereIn('id', $input['tags'])->get();
-        $array  = array(
-            'user_id'       => \Auth::id(),
+        $tag            = Tag::whereIn('id', $input['tags'])->get();
+        $published_at   = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
+        $array          = array(
+            'user_id'       => Auth::id(),
             'category_id'   => $input['category_id'],
             'title'         => $input['title'],
             'content'       => (new Markdown())->markdownToHtml($input['markdown-source']),
             'content_origin'=> $input['markdown-source'],
             'sort'          => $input['sort'] ?: 255,
-            'published_at'  => $input['published_at'],
+            'published_at'  => $published_at,
         );
 
         $post = Post::create($array);

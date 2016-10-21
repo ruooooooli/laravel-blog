@@ -25,6 +25,10 @@ class Post extends Model implements Transformable
         'published_at',
     ];
 
+    protected $dates = [
+        'published_at', 'created_at', 'updated_at',
+    ];
+
     /**
      * 获取文章所属分类
      */

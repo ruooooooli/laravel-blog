@@ -11,7 +11,11 @@
     </div>
     <div class="field">
         {!! Form::label('sort', '请输入文章序号', ['for' => 'sort']) !!}
-        {!! Form::number('sort', null, ['id' => 'sort', 'placeholder' => '请输入文章序号']) !!}
+        {!! Form::number('sort', 255, ['id' => 'sort', 'placeholder' => '请输入文章序号']) !!}
+    </div>
+    <div class="field">
+        {!! Form::label('published_at', '请输入文章发布日期', ['for' => 'published_at']) !!}
+        {!! Form::text('published_at', date('Y-m-d'), ['id' => 'published_at', 'placeholder' => '请输入文章发布日期']) !!}
     </div>
     <div class="field">
         {!! Form::label('category_id', '请选择文章分类', ['for' => 'category_id']) !!}
@@ -55,4 +59,13 @@
         {!! Form::button('提交', ['class' => 'ui green button create-update-post-btn', 'data-url' => route('backend::post.index')]) !!}
     </div>
 {!! Form::close() !!}
+@endsection
+@section('javascripts-inpage')
+    <script type="text/javascript">
+        $(function () {
+            var picker = new Pikaday({
+                field : $('#published_at')[0]
+            });
+        });
+    </script>
 @endsection

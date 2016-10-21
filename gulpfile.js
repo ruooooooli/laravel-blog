@@ -32,6 +32,7 @@ elixir(mix => {
             'sweetalert.css',
             'markdown-one.css',
             'prism.css',
+            'pikaday.css',
             'main.css',
         ], 'public/assets/css/styles.css')
 
@@ -43,6 +44,9 @@ elixir(mix => {
             'semantic.js',
             'nprogress.js',
             'sweetalert.min.js',
+            'moment.min.js',
+            'zh-cn.min.js',
+            'pikaday.js',
             'main.js',
         ], 'public/assets/js/scripts.js')
 

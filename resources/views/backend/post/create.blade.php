@@ -75,7 +75,7 @@
         {!! Form::button('返回', ['class' => 'ui red button come-back']) !!}
         {!! Form::button('提交', ['class' => 'ui green button create-update-post-btn', 'data-url' => route('backend::post.index')]) !!}
     </div>
-    
+
 {!! Form::close() !!}
 
 @endsection

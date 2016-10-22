@@ -31,7 +31,7 @@
                     <div class="description">
                         <div class="ui green horizontal statistic">
                             <div class="value">
-                                5,550
+                                {{ App\Models\Post::count() }} 篇
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="description">
                         <div class="ui green horizontal statistic">
                             <div class="value">
-                                5,550
+                                {{ App\Models\User::count() }} 位
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="description">
                         <div class="ui green horizontal statistic">
                             <div class="value">
-                                5,550
+                                {{ 5 }} 个
                             </div>
                         </div>
                     </div>

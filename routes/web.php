@@ -11,64 +11,68 @@
 |
 */
 
-Route::group(array(
+Route::group([
     'namespace' => 'Frontend',
     'as'        => 'frontend::',
-), function () {
+], function () {
     Route::get('/', 'IndexController@index')->name('index.index');
 });
 
-Route::group(array(
+Route::group([
     'namespace' => 'Auth',
     'as'        => 'backend::auth.',
     'prefix'    => 'backend',
-), function () {
-    Route::get('/auth/login', array(
+], function () {
+
+    Route::get('auth/login', [
         'uses'  => 'LoginController@getLogin',
         'as'    => 'login.get',
-    ));
+    ]);
 
-    Route::post('/auth/login', array(
+    Route::post('auth/login', [
         'uses'  => 'LoginController@postLogin',
         'as'    => 'login.post',
-    ));
+    ]);
 
-    Route::get('/auth/logout', array(
+    Route::get('auth/logout', [
         'uses'  => 'LoginController@logout',
         'as'    => 'logout',
-    ));
+    ]);
+
 });
 
-Route::group(array(
-    'namespace' => 'Backend',
-    'prefix'    => 'backend',
-    'as'        => 'backend::',
-    'middleware'=> 'auth',
-), function () {
-    Route::get('/', array(
+Route::group([
+    'namespace'     => 'Backend',
+    'prefix'        => 'backend',
+    'as'            => 'backend::',
+    'middleware'    => 'auth',
+], function () {
+
+    Route::get('/', [
         'uses'  => 'IndexController@index',
         'as'    => 'index.index',
-    ));
+    ]);
 
-    Route::post('/upload', array(
+    Route::post('upload', [
         'uses'  => 'UploadController@uploadImage',
         'as'    => 'upload',
-    ));
+    ]);
 
-    Route::resource('post', 'PostsController', array(
-        'except' => array('show')
-    ));
+    Route::resource('post', 'PostsController', [
+        'except' => ['show']
+    ]);
 
-    Route::delete('/category/batch', array(
+    Route::delete('category/batch', [
         'uses'  => 'CategoriesController@batch',
         'as'    => 'category.batch',
-    ));
+    ]);
 
-    Route::resource('category', 'CategoriesController', array(
-        'except' => array('show')
-    ));
+    Route::resource('category', 'CategoriesController', [
+        'except' => ['show']
+    ]);
 
-    Route::resource('tag', 'TagsController', array(
-        'except' => array('show')
-    ));
+    Route::resource('tag', 'TagsController', [
+        'except' => ['show']
+    ]);
+
 });

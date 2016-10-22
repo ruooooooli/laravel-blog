@@ -62,7 +62,7 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
 
         foreach ($items as $item) {
             if ($item->posts()->exists()) {
-                throw new Exception("请先删除 {$item->name} 下面的文章!");
+                throw new \Exception("请先删除 {$item->name} 下面的文章!");
             }
 
             $item->delete();

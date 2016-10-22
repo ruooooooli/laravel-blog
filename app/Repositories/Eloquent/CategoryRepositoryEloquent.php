@@ -27,7 +27,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         $category = $this->find($id);
 
         if ($category->posts()->exists()) {
-            throw new Exception('请先删除分类下面的文章!');
+            throw new \Exception('请先删除分类下面的文章!');
         }
 
         return $category->delete();
@@ -44,7 +44,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
 
         foreach ($items as $item) {
             if ($item->posts()->exists()) {
-                throw new Exception("请先删除 {$item->name} 下面的文章!");
+                throw new \Exception("请先删除 {$item->name} 下面的文章!");
             }
 
             $item->delete();

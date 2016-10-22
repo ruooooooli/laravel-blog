@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\TagCreateRequest;
 use App\Http\Requests\TagUpdateRequest;
 use App\Repositories\Contracts\TagRepository;
-use App\Http\Controllers\Controller;
 
 /**
  * 标签控制器

@@ -4,12 +4,13 @@ namespace App\Repositories\Eloquent;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\PostRepository;
-use App\Models\Post;
-use App\Models\Tag;
-use App\Bridge\Markdown;
-use Carbon\Carbon;
+
 use Auth;
+use Carbon\Carbon;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Bridge\Markdown;
+use App\Repositories\Contracts\PostRepository;
 
 class PostRepositoryEloquent extends BaseRepository implements PostRepository
 {
@@ -29,6 +30,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
     public function getSearchWhere($request)
     {
         $where = array();
+
         if ($request->has('key')) {
             $key = $request->input('key', '');
             array_push($where, array('title', 'like', "%{$key}%"));

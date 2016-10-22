@@ -4,8 +4,9 @@ namespace App\Repositories\Eloquent;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\CategoryRepository;
+
 use App\Models\Category;
+use App\Repositories\Contracts\CategoryRepository;
 
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
@@ -57,6 +58,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     public function getSearchWhere($request)
     {
         $where = array();
+
         if ($request->has('key')) {
             $key = $request->input('key');
             array_push($where, array('name', 'like', "%{$key}%"));

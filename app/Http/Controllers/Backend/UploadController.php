@@ -47,6 +47,7 @@ class UploadController extends Controller
         }
 
         $this->file = $request->file(config('blog.uploadFileKey'));
+
         $this->checkAllowedExtensionsOrFail();
 
         return $this->saveImageToLocal(1440);
@@ -71,13 +72,14 @@ class UploadController extends Controller
     {
         $uploadFolder   = trim(config('blog.uploadFolder'), '/');
         $folderName     = $uploadFolder.'/'.date('Ym/d').'/';
-        $destinationPath= public_path($folderName);
+        $destination    = public_path($folderName);
         $extension      = $this->file->getClientOriginalExtension() ?: 'png';
         $saveName       = $filename ?: str_random(16).'.'.$extension;
-        $fullName       = $destinationPath.$saveName;
+        $fullName       = $destination.$saveName;
         $publicName     = $folderName.$saveName;
 
-        $this->file->move($destinationPath, $saveName);
+        $this->file->move($destination, $saveName);
+
         $this->resize($fullName, $resize);
 
         return array(

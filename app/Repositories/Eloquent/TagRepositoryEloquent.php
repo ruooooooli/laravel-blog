@@ -4,8 +4,9 @@ namespace App\Repositories\Eloquent;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\TagRepository;
+
 use App\Models\Tag;
+use App\Repositories\Contracts\TagRepository;
 
 class TagRepositoryEloquent extends BaseRepository implements TagRepository
 {
@@ -33,6 +34,7 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
     public function getSearchWhere($request)
     {
         $where = array();
+
         if ($request->has('key')) {
             $key = $request->input('key');
             array_push($where, array('name', 'like', "%{$key}%"));

@@ -25,7 +25,7 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
      */
     public function getTagList()
     {
-        return $this->model->get()->pluck('name', 'id');
+        return $this->model->get();
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layout.backend.master')
 
-@section('title', '添加文章')
+@section('title', '编辑文章')
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <h4 class="ui horizontal header divider">填写信息</h4>
 
     <div class="field">
-        {!! Form::label('title', '请输入文章标题', ['for' => 'title']) !!}
+        {!! Form::label('title', '请输入文章标题') !!}
         {!! Form::text('title', null, ['id' => 'title', 'placeholder' => '请输入文章标题']) !!}
     </div>
 
@@ -32,10 +32,16 @@
     </div>
 
     <div class="field">
-        {!! Form::label('tags', '请选择文章标签', ['for' => 'tags']) !!}
-
-        <div class="field">
-            {!! Form::select('tags[]', $tags, 1, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
+        {!! Form::label('tag', '请选择文章标签') !!}
+        <div class="ui multiple selection dropdown" id="tag">
+            {!! Form::hidden('tags', '') !!}
+            <i class="dropdown icon"></i>
+            <div class="default text">选择文章标签</div>
+            <div class="menu">
+                @foreach($tags as $key => $value)
+                    <div class="item" data-value="{{ $value->id }}">{{ $value->name }}</div>
+                @endforeach
+            </div>
         </div>
     </div>
 

@@ -32,10 +32,16 @@
     </div>
 
     <div class="field">
-        {!! Form::label('tags', '请选择文章标签', ['for' => 'tags']) !!}
-
-        <div class="field">
-            {!! Form::select('tags[]', $tags, null, ['class' => 'ui fluid dropdown', 'multiple' => '', 'id' => 'tags']) !!}
+        {!! Form::label('tag', '请选择文章标签') !!}
+        <div class="ui multiple selection dropdown" id="tag">
+            {!! Form::hidden('tags', '') !!}
+            <i class="dropdown icon"></i>
+            <div class="default text">选择文章标签</div>
+            <div class="menu">
+                @foreach($tags as $key => $value)
+                    <div class="item" data-value="{{ $value->id }}">{{ $value->name }}</div>
+                @endforeach
+            </div>
         </div>
     </div>
 

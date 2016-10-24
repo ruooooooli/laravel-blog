@@ -2,6 +2,8 @@
 
 @section('title', '编辑文章')
 
+@inject('PostPresenter', 'App\Presenters\PostPresenter')
+
 @section('content')
 
 {!! Form::model($post, ['route' => ['backend::post.update', $post->id], 'class' => 'ui form', 'files' => true, 'method' => 'put']) !!}
@@ -34,7 +36,7 @@
     <div class="field">
         {!! Form::label('tag', '请选择文章标签') !!}
         <div class="ui multiple selection dropdown" id="tag">
-            {!! Form::hidden('tags', '') !!}
+            {!! Form::hidden('tags', $PostPresenter->showTagsIdString($post)) !!}
             <i class="dropdown icon"></i>
             <div class="default text">选择文章标签</div>
             <div class="menu">

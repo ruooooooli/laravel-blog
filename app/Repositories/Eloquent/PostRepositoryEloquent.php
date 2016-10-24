@@ -54,7 +54,8 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
      */
     public function create(array $input)
     {
-        $tag            = Tag::whereIn('id', $input['tags'])->get();
+        $tags           = explode(',', $input['tags']);
+        $tag            = Tag::whereIn('id', $tags)->get();
         $published_at   = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
         $array          = array(
             'user_id'       => Auth::id(),
@@ -67,7 +68,32 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         );
 
         $post = Post::create($array);
-        $post->tags()->attach($input['tags']);
+        $post->tags()->attach($tags);
+
+        return $post;
+    }
+
+    /**
+     * 处理创建文章 重写了父类的方法
+     */
+    public function update(array $input, $id)
+    {
+        $post           = Post::findOrFail($id);
+        $tags           = explode(',', $input['tags']);
+        $tag            = Tag::whereIn('id', $tags)->get();
+        $published_at   = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
+        $array          = array(
+            'user_id'       => Auth::id(),
+            'category_id'   => $input['category_id'],
+            'title'         => $input['title'],
+            'content'       => (new Markdown())->markdownToHtml($input['markdown-source']),
+            'content_origin'=> $input['markdown-source'],
+            'sort'          => $input['sort'] ?: 255,
+            'published_at'  => $published_at,
+        );
+
+        $post->update($array);
+        $post->tags()->attach($tags);
 
         return $post;
     }

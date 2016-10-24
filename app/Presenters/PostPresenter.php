@@ -12,4 +12,9 @@ class PostPresenter extends FractalPresenter
     {
         return new PostTransformer();
     }
+
+    public function showTagsIdString($post)
+    {
+        return $post->tags()->pluck('id')->implode(',');
+    }
 }

@@ -96,7 +96,7 @@ class PostsController extends Controller
     public function update(PostUpdateRequest $request, $id)
     {
         try {
-            $post = $this->post->update($id, $request->all());
+            $post = $this->post->update($request->all(), $id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }

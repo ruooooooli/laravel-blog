@@ -25600,6 +25600,12 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
             $('.come-back').on('click', function () {
                 window.history.back();
             });
+
+            if ($('#published_at').length) {
+                var picker = new Pikaday({
+                    field : $('#published_at')[0]
+                });
+            }
         },
         resetTitle : function () {
             document.title = originTitle;

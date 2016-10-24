@@ -45,6 +45,12 @@
             $('.come-back').on('click', function () {
                 window.history.back();
             });
+
+            if ($('#published_at').length) {
+                var picker = new Pikaday({
+                    field : $('#published_at')[0]
+                });
+            }
         },
         resetTitle : function () {
             document.title = originTitle;

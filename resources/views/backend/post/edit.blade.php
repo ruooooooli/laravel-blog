@@ -87,12 +87,3 @@
 {!! Form::close() !!}
 
 @endsection
-@section('javascripts-inpage')
-    <script type="text/javascript">
-        $(function () {
-            var picker = new Pikaday({
-                field : $('#published_at')[0]
-            });
-        });
-    </script>
-@endsection

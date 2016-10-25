@@ -58,16 +58,12 @@ Route::group([
         'as'    => 'upload',
     ]);
 
-    Route::resource('post', 'PostsController', [
-        'except' => ['show']
-    ]);
-
     Route::delete('post/batch', [
         'uses'  => 'PostsController@batch',
         'as'    => 'post.batch',
     ]);
 
-    Route::resource('category', 'CategoriesController', [
+    Route::resource('post', 'PostsController', [
         'except' => ['show']
     ]);
 
@@ -76,7 +72,7 @@ Route::group([
         'as'    => 'category.batch',
     ]);
 
-    Route::resource('tag', 'TagsController', [
+    Route::resource('category', 'CategoriesController', [
         'except' => ['show']
     ]);
 
@@ -84,4 +80,9 @@ Route::group([
         'uses'  => 'TagsController@batch',
         'as'    => 'tag.batch',
     ]);
+
+    Route::resource('tag', 'TagsController', [
+        'except' => ['show']
+    ]);
+
 });

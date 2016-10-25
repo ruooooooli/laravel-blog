@@ -26,9 +26,11 @@
             @foreach($posts as $key => $value)
                 <tr>
                     <td>
-                        <div class="ui child checkbox" data-id="{{ $value->id }}">
-                            <input type="checkbox" class="select-checkbox">
-                        </div>
+                        @can('delete', $value)
+                            <div class="ui child checkbox" data-id="{{ $value->id }}">
+                                <input type="checkbox" class="select-checkbox">
+                            </div>
+                        @endcan
                     </td>
                     <td>{{ $value->title }}</td>
                     <td>{{ $value->published_at->toDateString() }}</td>
@@ -36,12 +38,16 @@
                     <td>{{ $value->sort }}</td>
                     <td>
                         <div class="ui buttons">
-                            <a class="ui green icon button" href="{{ route('backend::post.edit', $value->id) }}">
-                                <i class="write arrow icon"></i>
-                            </a>
-                            <a class="ui red icon button delete-post-btn" data-url="{{ route('backend::post.destroy', $value->id) }}">
-                                <i class="remove arrow icon"></i>
-                            </a>
+                            @can('update', $value)
+                                <a class="ui green icon button" href="{{ route('backend::post.edit', $value->id) }}">
+                                    <i class="write arrow icon"></i>
+                                </a>
+                            @endcan
+                            @can('delete', $value)
+                                <a class="ui red icon button delete-post-btn" data-url="{{ route('backend::post.destroy', $value->id) }}">
+                                    <i class="remove arrow icon"></i>
+                                </a>
+                            @endcan
                         </div>
                     </td>
                 </tr>

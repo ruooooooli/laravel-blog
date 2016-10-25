@@ -23,12 +23,14 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     /**
      * 重写父类的删除方法
      */
-    public function delete($id)
+    public function delete($category)
     {
-        $category = $this->find($id);
+        if (!($category instanceof Category)) {
+            $category = $this->findOrFail($category);
+        }
 
         if ($category->posts()->exists()) {
-            throw new \Exception('请先删除分类下面的文章!');
+            throw new \Exception("请先删除 {$category->name} 下面的文章!");
         }
 
         return $category->delete();
@@ -44,11 +46,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         $items      = $this->findWhereIn('id', array_values($idArray));
 
         foreach ($items as $item) {
-            if ($item->posts()->exists()) {
-                throw new \Exception("请先删除 {$item->name} 下面的文章!");
-            }
-
-            $item->delete();
+            $this->delete($item);
         }
     }
 

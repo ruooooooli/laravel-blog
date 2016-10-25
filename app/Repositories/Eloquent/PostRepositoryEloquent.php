@@ -78,7 +78,12 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
      */
     public function update(array $input, $id)
     {
-        $post           = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
+
+        if (Auth::user()->cant('update', $post)) {
+            throw new \Exception('您当前没有权限更新这篇文章!');
+        }
+
         $tags           = explode(',', $input['tags']);
         $tag            = Tag::whereIn('id', $tags)->get();
         $published_at   = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
@@ -109,7 +114,23 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         $items      = $this->findWhereIn('id', array_values($idArray));
 
         foreach ($items as $item) {
-            $item->delete();
+            $this->delete($item);
         }
+    }
+
+    /**
+     * 处理删除文章
+     */
+    public function delete($post)
+    {
+        if (!($post instanceof Post)) {
+            $post = Post::findOrFail($post);
+        }
+
+        if (Auth::user()->cant('delete', $post)) {
+            throw new \Exception('您当前没有权限删除这篇文章!');
+        }
+
+        return $post->delete();
     }
 }

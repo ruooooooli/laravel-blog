@@ -63,11 +63,23 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
         $items      = $this->findWhereIn('id', array_values($idArray));
 
         foreach ($items as $item) {
-            if ($item->posts()->exists()) {
-                throw new \Exception("请先删除 {$item->name} 下面的文章!");
-            }
-
-            $item->delete();
+            $this->delete($item);
         }
+    }
+
+    /**
+     * 处理删除
+     */
+    public function delete($tag)
+    {
+        if (!($tag instanceof Tag)) {
+            $tag = Tag::findOrFail($tag);
+        }
+
+        if ($tag->posts()->exists()) {
+            throw new \Exception("请先删除 {$item->name} 下面的文章!");
+        }
+
+        return $tag->delete();
     }
 }

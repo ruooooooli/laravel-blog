@@ -18,7 +18,6 @@ class UserUpdateRequest extends FormRequest
         return [
             'username'  => "required|min:4|max:32|unique:users,username,{$id}",
             'email'     => 'email',
-            'password'  => 'required|min:6|max:32|confirmed',
         ];
     }
 
@@ -30,10 +29,6 @@ class UserUpdateRequest extends FormRequest
             'username.max'          => '用户名最多32个字符!',
             'username.unique'       => '用户名已经存在!',
             'email.email'           => '邮箱地址格式错误!',
-            'password.required'     => '请输入密码!',
-            'password.min'          => '密码最少6个字符!',
-            'password.max'          => '密码最多32个字符!',
-            'password.confirmed'    => '请保持两次输入的密码一致!',
         ];
     }
 }

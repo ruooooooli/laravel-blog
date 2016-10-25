@@ -3,7 +3,7 @@
 @section('title', '修改用户')
 
 @section('content')
-    {!! Form::model($user, ['route' => 'backend::user.store', 'class' => 'ui form']) !!}
+    {!! Form::model($user, ['route' => ['backend::user.update', $user->id], 'method' => 'put', 'class' => 'ui form']) !!}
         <h4 class="ui horizontal header divider">填写信息</h4>
         <div class="field">
             {!! Form::label('username', '请输入用户名') !!}

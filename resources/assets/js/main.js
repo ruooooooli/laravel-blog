@@ -288,32 +288,27 @@
                     return false;
                 }
 
-                if (password == '') {
-                    swal({
-                        title   : '请输入密码!',
-                        type    : 'warning',
-                    });
+                if (password != '') {
+                    if (passwordConfirm == '') {
+                        swal({
+                            title   : '请输入确认密码!',
+                            type    : 'warning',
+                        });
 
-                    return false;
+                        return false;
+                    }
+
+                    if (passwordConfirm != password) {
+                        swal({
+                            title   : '请保持确认两次输入密码一致!',
+                            type    : 'warning',
+                        });
+
+                        return false;
+                    }
                 }
 
-                if (passwordConfirm == '') {
-                    swal({
-                        title   : '请输入确认密码!',
-                        type    : 'warning',
-                    });
 
-                    return false;
-                }
-
-                if (passwordConfirm != password) {
-                    swal({
-                        title   : '请保持确认两次输入密码一致!',
-                        type    : 'warning',
-                    });
-
-                    return false;
-                }
 
                 if (!that.hasClass('loading')) {
                     that.addClass('loading').addClass('disabled');

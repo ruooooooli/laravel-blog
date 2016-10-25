@@ -37,10 +37,41 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function update(array $input, $id)
     {
         $user = User::findOrFail($id);
+        if ($this->checkPassword($input)) {
+            $user->password = bcrypt($input['password']);
+        }
 
-        $input['password'] = bcrypt($input['password']);
+        $user->username = $input['username'];
+        $user->email    = $input['email'];
 
-        return $user->update($input);
+        return $user->update();
+    }
+
+    /**
+     * 默认更新用户可以不用填写密码 如果填写了请保持一致
+     */
+    private function checkPassword($input)
+    {
+        $password           = $input['password'];
+        $passwordConfirm    = $input['password_confirmation'];
+
+        if (!empty($password)) {
+            if (mb_strlen($password) < 6) {
+                throw new \Exception('密码最少6个字符!');
+            }
+
+            if (mb_strlen($password) > 32) {
+                throw new \Exception('密码最多32个字符!');
+            }
+
+            if ($password !== $passwordConfirm) {
+                throw new \Exception('请保持两次输入的密码一致!');
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

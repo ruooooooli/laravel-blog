@@ -44,7 +44,7 @@
                                 </a>
                             @endcan
                             @can('delete', $value)
-                                <a class="ui red icon button delete-post-btn" data-url="{{ route('backend::post.destroy', $value->id) }}">
+                                <a class="ui red icon button delete-btn" data-url="{{ route('backend::post.destroy', $value->id) }}">
                                     <i class="remove arrow icon"></i>
                                 </a>
                             @endcan

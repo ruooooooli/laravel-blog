@@ -28,8 +28,8 @@
         <div class="ui simple dropdown item">
             <i class="large users icon"></i>用户管理
             <div class="menu">
-                <a class="item" href="#">用户列表</a>
-                <a class="item" href="#">添加用户</a>
+                <a class="item" href="{{ route('backend::user.index') }}">用户列表</a>
+                <a class="item" href="{{ route('backend::user.create') }}">添加用户</a>
             </div>
         </div>
         <div class="ui simple dropdown item">

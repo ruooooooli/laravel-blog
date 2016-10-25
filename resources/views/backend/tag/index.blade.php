@@ -39,7 +39,7 @@
                             <a class="ui green icon button" href="{{ route('backend::tag.edit', $value->id) }}">
                                 <i class="write arrow icon"></i>
                             </a>
-                            <a class="ui red icon button delete-tag-btn" data-url="{{ route('backend::tag.destroy', $value->id) }}">
+                            <a class="ui red icon button delete-btn" data-url="{{ route('backend::tag.destroy', $value->id) }}">
                                 <i class="remove arrow icon"></i>
                             </a>
                         </div>

@@ -30,11 +30,12 @@
             var self = this;
             self.initSemantic();
             self.initBackendLogin();
-            self.initCreateUpdateCategory();
             self.initSelectDelete();
-            self.initDeleteCategory();
+            self.initDeleteItem();
+            self.initCreateUpdateCategory();
             self.initCreateUpdatePost();
             self.initCreateUpdateTag();
+            self.initCreateUpdateUser();
             self.initPrefix();
             self.initMarked();
             self.initUploadImage();
@@ -175,78 +176,6 @@
                 });
             });
         },
-        initDeleteCategory : function () {
-            $('.delete-category-btn').on('click', function () {
-                var that = $(this);
-                swal({
-                    title: "确定要删除这个分类吗?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#FF4949",
-                    confirmButtonText: "删除",
-                    cancelButtonText: "取消",
-                    closeOnConfirm: false,
-                    closeOnCancel: true
-                }, function(isConfirm) {
-                    if (isConfirm) {
-                        $.post(that.data('url'), {
-                            '_method'   : 'DELETE',
-                            '_token'    : Config.token,
-                        }, function (response) {
-                            if (response.code == 'success') {
-                                swal({
-                                    'title'  : response.message,
-                                    'type'  : 'success',
-                                }, function () {
-                                    $.pjax.reload('body');
-                                });
-                            } else {
-                                swal({
-                                    title   : response.message,
-                                    type    : 'warning',
-                                });
-                            }
-                        }, 'json');
-                    }
-                });
-            });
-        },
-        initDeleteTag : function () {
-            $('.delete-tag-btn').on('click', function () {
-                var that = $(this);
-                swal({
-                    title: "确定要删除这个标签吗?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#FF4949",
-                    confirmButtonText: "删除",
-                    cancelButtonText: "取消",
-                    closeOnConfirm: false,
-                    closeOnCancel: true
-                }, function(isConfirm) {
-                    if (isConfirm) {
-                        $.post(that.data('url'), {
-                            '_method'   : 'DELETE',
-                            '_token'    : Config.token,
-                        }, function (response) {
-                            if (response.code == 'success') {
-                                swal({
-                                    'title'  : response.message,
-                                    'type'  : 'success',
-                                }, function () {
-                                    $.pjax.reload('body');
-                                });
-                            } else {
-                                swal({
-                                    title   : response.message,
-                                    type    : 'warning',
-                                });
-                            }
-                        }, 'json');
-                    }
-                });
-            });
-        },
         initSelectDelete : function () {
             $('.select-delete-btn').on('click', function () {
                 var deleteIds = new Array();
@@ -300,7 +229,7 @@
                 });
             });
         },
-        initCreateUpdateTag     : function () {
+        initCreateUpdateTag : function () {
             $('.create-update-tag-btn').on('click', function () {
                 var that = $(this);
                 var name = $.trim($('#name').val());
@@ -334,7 +263,79 @@
                 });
             });
         },
-        initCreateUpdatePost    : function () {
+        initCreateUpdateUser : function () {
+            $('.create-update-user-btn').on('click', function () {
+                var that            = $(this);
+                var username        = $.trim($('#username').val());
+                var email           = $.trim($('#email').val());
+                var password        = $.trim($('#password').val());
+                var passwordConfirm = $.trim($('#password_confirmation').val());
+
+                if (username == '') {
+                    swal({
+                        title   : '请输入用户名!',
+                        type    : 'warning',
+                    });
+                    return false;
+                }
+
+                if (email == '') {
+                    swal({
+                        title   : '请输入邮箱地址!',
+                        type    : 'warning',
+                    });
+
+                    return false;
+                }
+
+                if (password == '') {
+                    swal({
+                        title   : '请输入密码!',
+                        type    : 'warning',
+                    });
+
+                    return false;
+                }
+
+                if (passwordConfirm == '') {
+                    swal({
+                        title   : '请输入确认密码!',
+                        type    : 'warning',
+                    });
+
+                    return false;
+                }
+
+                if (passwordConfirm != password) {
+                    swal({
+                        title   : '请保持确认两次输入密码一致!',
+                        type    : 'warning',
+                    });
+
+                    return false;
+                }
+
+                if (!that.hasClass('loading')) {
+                    that.addClass('loading').addClass('disabled');
+                }
+
+                that.closest('form').ajaxSubmit({
+                    dataType    : 'json',
+                    success     : function (response) {
+                        if (response.code == 'success') {
+                            window.location.href = that.data('url');
+                        } else {
+                            that.removeClass('loading').removeClass('disabled');
+                            swal({
+                                title   : response.message,
+                                type    : 'warning',
+                            });
+                        }
+                    }
+                });
+            });
+        },
+        initCreateUpdatePost : function () {
             $('.create-update-post-btn').on('click', function () {
                 var that        = $(this);
                 var title       = $.trim($('#title').val());
@@ -412,24 +413,60 @@
                 });
             });
         },
-        insertIntoPost  : function (id, str) {
-            var obj         = document.getElementById(id);
-            var startPos    = obj.selectionStart;
-            var endPos      = obj.selectionEnd;
-            var cursorPos   = startPos;
-            var tempString  = obj.value;
-            obj.value = tempString.substring(0, startPos) + str + tempString.substring(endPos, tempString.length);
-            cursorPos += str.length;
-            obj.selectionStart = obj.selectionEnd = cursorPos;
+        initDeleteItem : function () {
+            $('.delete-btn').on('click', function () {
+                var that = $(this);
+                swal({
+                    title : "确定要删除这个项目吗?",
+                    type : "warning",
+                    showCancelButton : true,
+                    confirmButtonColor : "#FF4949",
+                    confirmButtonText : "删除",
+                    cancelButtonText : "取消",
+                    closeOnConfirm : false,
+                    closeOnCancel : true
+                }, function(isConfirm) {
+                    if (isConfirm) {
+                        $.post(that.data('url'), {
+                            '_method'   : 'DELETE',
+                            '_token'    : Config.token,
+                        }, function (response) {
+                            if (response.code == 'success') {
+                                swal({
+                                    'title'  : response.message,
+                                    'type'  : 'success',
+                                }, function () {
+                                    $.pjax.reload('body');
+                                });
+                            } else {
+                                swal({
+                                    title   : response.message,
+                                    type    : 'warning',
+                                });
+                            }
+                        }, 'json');
+                    }
+                });
+            });
         },
-        initMarked      : function () {
+        insertIntoPost : function (id, str) {
+            var obj             = document.getElementById(id);
+            var startPos        = obj.selectionStart;
+            var endPos          = obj.selectionEnd;
+            var cursorPos       = startPos;
+            var tempString      = obj.value;
+            obj.value           = tempString.substring(0, startPos) + str + tempString.substring(endPos, tempString.length);
+            cursorPos           = cursorPos + str.length;
+            obj.selectionStart  = obj.selectionEnd = cursorPos;
+        },
+        initMarked : function () {
             var self = this;
 
             $('#markdown-view-tab').on('click', function () {
                 self.markDownToHtml();
             });
         },
-        markDownToHtml  : function () {
+        markDownToHtml : function () {
             var markdown = $('#markdown-source').val();
 
             if (markdown != '') {

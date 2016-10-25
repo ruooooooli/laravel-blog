@@ -85,4 +85,13 @@ Route::group([
         'except' => ['show']
     ]);
 
+    Route::delete('user/batch', [
+        'uses'  => 'UsersController@batch',
+        'as'    => 'user.batch',
+    ]);
+
+    Route::resource('user', 'UsersController', [
+        'except' => ['show']
+    ]);
+
 });

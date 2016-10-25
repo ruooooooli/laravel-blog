@@ -31,12 +31,10 @@
             self.initSemantic();
             self.initBackendLogin();
             self.initCreateUpdateCategory();
-            self.initSelectDeleteCategory();
+            self.initSelectDelete();
             self.initDeleteCategory();
             self.initCreateUpdatePost();
             self.initCreateUpdateTag();
-            self.initDeleteTag();
-            self.initSelectDeleteTag();
             self.initPrefix();
             self.initMarked();
             self.initUploadImage();
@@ -249,9 +247,10 @@
                 });
             });
         },
-        initSelectDeleteCategory : function () {
+        initSelectDelete : function () {
             $('.select-delete-btn').on('click', function () {
                 var deleteIds = new Array();
+                var deleteUrl = $(this).data('url');
                 $('tbody').find('.checkbox').each(function () {
                     if ($(this).checkbox('is checked')) {
                         deleteIds.push($(this).data('id'));
@@ -266,18 +265,19 @@
 
                     return false;
                 }
+
                 swal({
-                    title: "确定要删除所选的项目吗?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#FF4949",
-                    confirmButtonText: "删除",
-                    cancelButtonText: "取消",
-                    closeOnConfirm: false,
-                    closeOnCancel: true
+                    title : "确定要删除所选的项目吗?",
+                    type : "warning",
+                    showCancelButton : true,
+                    confirmButtonColor : "#FF4949",
+                    confirmButtonText : "删除",
+                    cancelButtonText : "取消",
+                    closeOnConfirm : false,
+                    closeOnCancel : true
                 }, function(isConfirm) {
                     if (isConfirm) {
-                        $.post(Config.routes.category_delete_batch, {
+                        $.post(deleteUrl, {
                             '_method'   : 'DELETE',
                             'idstring'  : deleteIds.join(),
                             '_token'    : Config.token,
@@ -299,9 +299,6 @@
                     }
                 });
             });
-        },
-        initSelectDeleteTag : function () {
-
         },
         initCreateUpdateTag     : function () {
             $('.create-update-tag-btn').on('click', function () {

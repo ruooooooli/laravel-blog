@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('layout.backend.table_search', ['route' => 'backend::post.index'])
+@include('layout.backend.table_search', ['search' => 'backend::post.index', 'delete' => route('backend::post.batch')])
 
 <table class="ui celled table center aligned list">
     <thead>

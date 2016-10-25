@@ -53,7 +53,7 @@ Route::group([
         'as'    => 'index.index',
     ]);
 
-    Route::post('upload', [
+    Route::match(['post', 'put'], 'upload', [
         'uses'  => 'UploadController@uploadImage',
         'as'    => 'upload',
     ]);
@@ -62,17 +62,26 @@ Route::group([
         'except' => ['show']
     ]);
 
-    Route::delete('category/batch', [
-        'uses'  => 'CategoriesController@batch',
-        'as'    => 'category.batch',
+    Route::delete('post/batch', [
+        'uses'  => 'PostsController@batch',
+        'as'    => 'post.batch',
     ]);
 
     Route::resource('category', 'CategoriesController', [
         'except' => ['show']
     ]);
 
+    Route::delete('category/batch', [
+        'uses'  => 'CategoriesController@batch',
+        'as'    => 'category.batch',
+    ]);
+
     Route::resource('tag', 'TagsController', [
         'except' => ['show']
     ]);
 
+    Route::delete('tag/batch', [
+        'uses'  => 'TagsController@batch',
+        'as'    => 'tag.batch',
+    ]);
 });

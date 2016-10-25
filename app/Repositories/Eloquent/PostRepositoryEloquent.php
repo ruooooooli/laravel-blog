@@ -93,6 +93,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         );
 
         $post->update($array);
+        $post->tags()->detach();
         $post->tags()->attach($tags);
 
         return $post;
@@ -103,6 +104,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
      */
     public function batchDelete($request)
     {
+        dd(__LINE__);
         $idString   = $request->input('idstring');
         $idArray    = explode(',', $idString);
         $items      = $this->findWhereIn('id', array_values($idArray));

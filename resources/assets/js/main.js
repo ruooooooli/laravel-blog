@@ -61,8 +61,6 @@
             $('.ui.dropdown').dropdown();
             $('.menu .item').tab();
 
-            $('.special.cards .image').dimmer({on: 'hover'});
-
             $('.list .master.checkbox').checkbox({
                 onChecked: function () {
                     var $childCheckbox  = $(this).closest('.list').find('.checkbox');
@@ -112,6 +110,7 @@
                         title   : '请输入登录的用户名!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
 
@@ -120,6 +119,7 @@
                         title   : '请输入登录的密码!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
 
@@ -153,6 +153,7 @@
                         title   : '请输入分类名称!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
 
@@ -262,6 +263,7 @@
                         title   : '请选择要删除的项目!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
                 swal({
@@ -311,6 +313,7 @@
                         title   : '请输入标签名称!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
 
@@ -353,6 +356,7 @@
                         title   : '请选择文章分类!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
 
@@ -361,6 +365,7 @@
                         title   : '请输入文章内容!',
                         type    : 'warning',
                     });
+
                     return false;
                 }
 
@@ -422,12 +427,14 @@
         },
         initMarked      : function () {
             var self = this;
+
             $('#markdown-view-tab').on('click', function () {
                 self.markDownToHtml();
             });
         },
         markDownToHtml  : function () {
             var markdown = $('#markdown-source').val();
+
             if (markdown != '') {
                 marked(markdown, function (error, content) {
                     $('#markdown-html').html(content);

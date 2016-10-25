@@ -308,8 +308,6 @@
                     }
                 }
 
-
-
                 if (!that.hasClass('loading')) {
                     that.addClass('loading').addClass('disabled');
                 }

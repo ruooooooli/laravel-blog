@@ -73,7 +73,7 @@ class UsersController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         try {
-            $user = $this->user->update($id, $request->all());
+            $user = $this->user->update($request->all(), $id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }

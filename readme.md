@@ -4,7 +4,7 @@
 ### 用到的包
 1. [Laravel 5.3](https://laravel.com/)
 2. [Semantic UI](http://semantic-ui.com/)
-
+3. [Ntrust](https://github.com/klaravel/ntrust)
 
 ### 项目依赖
 - [PHP >= 5.5.9](http://php.net/)

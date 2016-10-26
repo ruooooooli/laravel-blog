@@ -24,7 +24,6 @@ class LoginController extends Controller
 
     public function getLogin()
     {
-        // self::createDefaultUser();
         return view('auth.login');
     }
 

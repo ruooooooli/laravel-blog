@@ -7,10 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Klaravel\Ntrust\Traits\NtrustUserTrait;
 
 class User extends Authenticatable implements Transformable
 {
-    use Notifiable, TransformableTrait;
+    use Notifiable, TransformableTrait, NtrustUserTrait;
+
+    protected static $roleProfile = 'user';
 
     /**
      * 可填充属性

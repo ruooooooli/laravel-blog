@@ -1,4 +1,4 @@
-# RuoLi's Laravel Blog
+# RuoLi Laravel Blog
 
 
 ### 用到的包
@@ -57,5 +57,6 @@ $ open http://localhost:8000
 ```
 
 ## 尚未完成
-1. 用户权限的添加
-2. Redis 缓存
+1. 博客的前台展示 计划使用 vue 来实现
+2. 计划加上 Entrust 用户权限管理
+3. Redis 缓存

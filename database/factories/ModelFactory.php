@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Post;
+use App\Models\Category;
+use Faker\Generator;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,14 +15,33 @@
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Generator $faker) {
 
     static $password;
 
     return [
-        'name'              => $faker->name,
+        'username'          => $faker->name,
         'email'             => $faker->safeEmail,
-        'password'          => $password ?: $password = bcrypt('secret'),
+        'password'          => $password ?: $password = bcrypt('admin'),
         'remember_token'    => str_random(10),
+    ];
+});
+
+$factory->define(Category::class, function (Generator $faker) {
+    return [
+        'name'  => $faker->name,
+        'sort'  => $faker->numberBetween(1, 255),
+    ];
+});
+
+$factory->define(Post::class, function (Generator $faker) {
+    return [
+        'category_id'   => '',
+        'user_id'       => '',
+        'title'         => '',
+        'content'       => '',
+        'description'   => '',
+        'sort'          => '',
+        'published_at'  => '',
     ];
 });

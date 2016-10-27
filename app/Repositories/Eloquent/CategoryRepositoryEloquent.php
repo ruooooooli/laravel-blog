@@ -26,7 +26,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     public function delete($category)
     {
         if (!($category instanceof Category)) {
-            $category = $this->findOrFail($category);
+            $category = $this->find($category);
         }
 
         if ($category->posts()->exists()) {

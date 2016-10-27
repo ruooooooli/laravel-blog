@@ -32,7 +32,7 @@
                     </td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->slug }}</td>
-                    <td>{{ $value->slug }}</td>
+                    <td>{{ $value->posts()->count() }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>
                         <div class="ui buttons">

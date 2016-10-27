@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\User;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+
 use Faker\Generator;
 
 /*
@@ -15,7 +18,7 @@ use Faker\Generator;
 |
 */
 
-$factory->define(App\Models\User::class, function (Generator $faker) {
+$factory->define(User::class, function (Generator $faker) {
 
     static $password;
 
@@ -27,18 +30,26 @@ $factory->define(App\Models\User::class, function (Generator $faker) {
     ];
 });
 
+$factory->define(Tag::class, function (Generator $faker) {
+    return [
+        'name'          => $faker->name,
+        'slug'          => implode('-', $faker->words()),
+        'description'   => $faker->text,
+    ];
+});
+
 $factory->define(Category::class, function (Generator $faker) {
     return [
-        'name'  => $faker->name,
-        'sort'  => $faker->numberBetween(1, 255),
+        'name' => $faker->name,
+        'sort' => $faker->numberBetween(1, 255),
     ];
 });
 
 $factory->define(Post::class, function (Generator $faker) {
     return [
         'category_id'   => '',
-        'user_id'       => '',
-        'title'         => '',
+        'user_id'       => 1,
+        'title'         => ,
         'content'       => '',
         'description'   => '',
         'sort'          => '',

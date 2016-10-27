@@ -80,9 +80,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
     {
         $post = Post::findOrFail($id);
 
-        if (Auth::user()->cant('update', $post)) {
-            throw new \Exception('您当前没有权限更新这篇文章!');
-        }
+        // if (Auth::user()->cant('update', $post)) {
+        //     throw new \Exception('您当前没有权限更新这篇文章!');
+        // }
 
         $tags           = explode(',', $input['tags']);
         $tag            = Tag::whereIn('id', $tags)->get();
@@ -98,8 +98,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         );
 
         $post->update($array);
-        $post->tags()->detach();
-        $post->tags()->attach($tags);
+        $post->tags()->sync($tags);
 
         return $post;
     }

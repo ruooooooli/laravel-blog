@@ -6,7 +6,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 use App\Models\User;
-use App\Validators\UserValidator;
 use App\Repositories\Contracts\UserRepository;
 
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
@@ -36,7 +35,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function update(array $input, $id)
     {
-        $user = User::findOrFail($id);
+        $user = $this->find($id);
+
         if ($this->checkPassword($input)) {
             $user->password = bcrypt($input['password']);
         }
@@ -83,7 +83,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         if ($request->has('key')) {
             $key = $request->input('key');
-            array_push($where, array('name', 'like', "%{$key}%"));
+            array_push($where, array('username', 'like', "%{$key}%"));
+            array_push($where, array('email', 'like', "%{$key}%"));
         }
 
         return $where;
@@ -119,7 +120,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function delete($user)
     {
         if (!($user instanceof User)) {
-            $user = User::findOrFail($user);
+            $user = $this->find($user);
         }
 
         // 判断不能删除的情况

@@ -25558,6 +25558,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
     var LaravelBlog = {
         init : function () {
             var self = this;
+
             $(document).pjax('a:not(a[data-ajax="not"])', '.body', {
                 timeout         : 1600,
                 maxCacheLength  : 500,
@@ -25583,6 +25584,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
         },
         siteBootUp : function () {
             var self = this;
+
             self.initSemantic();
             self.initBackendLogin();
             self.initSelectDelete();
@@ -25602,7 +25604,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
 
             if ($('#published_at').length) {
                 var picker = new Pikaday({
-                    field : $('#published_at')[0]
+                    field : $('#published_at')[0],
                 });
             }
         },
@@ -25616,12 +25618,12 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
             $('.menu .item').tab();
 
             $('.list .master.checkbox').checkbox({
-                onChecked: function () {
-                    var $childCheckbox  = $(this).closest('.list').find('.checkbox');
+                onChecked : function () {
+                    var $childCheckbox = $(this).closest('.list').find('.checkbox');
                     $childCheckbox.checkbox('check');
                 },
-                onUnchecked: function () {
-                    var $childCheckbox  = $(this).closest('.list').find('.checkbox');
+                onUnchecked : function () {
+                    var $childCheckbox = $(this).closest('.list').find('.checkbox');
                     $childCheckbox.checkbox('uncheck');
                 }
             });
@@ -25702,6 +25704,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                 var that = $(this);
                 var name = $.trim($('#name').val());
                 var sort = $.trim($('#sort').val());
+
                 if (name == '') {
                     swal({
                         title   : '请输入分类名称!',
@@ -25735,6 +25738,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
             $('.select-delete-btn').on('click', function () {
                 var deleteIds = new Array();
                 var deleteUrl = $(this).data('url');
+
                 $('tbody').find('.checkbox').each(function () {
                     if ($(this).checkbox('is checked')) {
                         deleteIds.push($(this).data('id'));
@@ -25889,6 +25893,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                 var title       = $.trim($('#title').val());
                 var cid         = $.trim($('#category_id').val());
                 var markdown    = $.trim($('#markdown-source').val());
+
                 if (title == '') {
                     swal({
                         title   : '请输入文章标题!',
@@ -25964,6 +25969,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
         initDeleteItem : function () {
             $('.delete-btn').on('click', function () {
                 var that = $(this);
+
                 swal({
                     title : "确定要删除这个项目吗?",
                     type : "warning",

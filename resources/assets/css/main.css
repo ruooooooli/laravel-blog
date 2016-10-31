@@ -16,7 +16,3 @@
 .login-form {
     padding-top: 5%;
 }
-
-input[type='file'] {
-    display: none;
-}

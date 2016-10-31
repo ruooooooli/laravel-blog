@@ -3,6 +3,7 @@
     var LaravelBlog = {
         init : function () {
             var self = this;
+
             $(document).pjax('a:not(a[data-ajax="not"])', '.body', {
                 timeout         : 1600,
                 maxCacheLength  : 500,
@@ -28,6 +29,7 @@
         },
         siteBootUp : function () {
             var self = this;
+
             self.initSemantic();
             self.initBackendLogin();
             self.initSelectDelete();
@@ -47,7 +49,7 @@
 
             if ($('#published_at').length) {
                 var picker = new Pikaday({
-                    field : $('#published_at')[0]
+                    field : $('#published_at')[0],
                 });
             }
         },
@@ -61,12 +63,12 @@
             $('.menu .item').tab();
 
             $('.list .master.checkbox').checkbox({
-                onChecked: function () {
-                    var $childCheckbox  = $(this).closest('.list').find('.checkbox');
+                onChecked : function () {
+                    var $childCheckbox = $(this).closest('.list').find('.checkbox');
                     $childCheckbox.checkbox('check');
                 },
-                onUnchecked: function () {
-                    var $childCheckbox  = $(this).closest('.list').find('.checkbox');
+                onUnchecked : function () {
+                    var $childCheckbox = $(this).closest('.list').find('.checkbox');
                     $childCheckbox.checkbox('uncheck');
                 }
             });
@@ -147,6 +149,7 @@
                 var that = $(this);
                 var name = $.trim($('#name').val());
                 var sort = $.trim($('#sort').val());
+
                 if (name == '') {
                     swal({
                         title   : '请输入分类名称!',
@@ -180,6 +183,7 @@
             $('.select-delete-btn').on('click', function () {
                 var deleteIds = new Array();
                 var deleteUrl = $(this).data('url');
+
                 $('tbody').find('.checkbox').each(function () {
                     if ($(this).checkbox('is checked')) {
                         deleteIds.push($(this).data('id'));
@@ -334,6 +338,7 @@
                 var title       = $.trim($('#title').val());
                 var cid         = $.trim($('#category_id').val());
                 var markdown    = $.trim($('#markdown-source').val());
+
                 if (title == '') {
                     swal({
                         title   : '请输入文章标题!',
@@ -409,6 +414,7 @@
         initDeleteItem : function () {
             $('.delete-btn').on('click', function () {
                 var that = $(this);
+
                 swal({
                     title : "确定要删除这个项目吗?",
                     type : "warning",

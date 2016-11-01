@@ -58,7 +58,7 @@ class CategoriesController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('分类添加成功!');
+        return successJson("分类 {$category->name} 添加成功!");
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoriesController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('分类修改成功!');
+        return successJson("分类 {$category->name} 修改成功!");
     }
 
     /**
@@ -91,12 +91,12 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         try {
-            $deleted = $this->category->delete($id);
+            $category = $this->category->delete($id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
 
-        return successJson('分类删除成功!');
+        return successJson("分类 {$category->name} 删除成功!");
     }
 
     /**
@@ -110,6 +110,6 @@ class CategoriesController extends Controller
             return errorJson();
         }
 
-        return successJson('分类批量删除成功!');
+        return successJson('批量删除分类成功!');
     }
 }

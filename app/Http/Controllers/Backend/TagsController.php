@@ -58,7 +58,7 @@ class TagsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('标签添加成功!');
+        return successJson("标签 {$tag->name} 添加成功!");
     }
 
     /**
@@ -82,7 +82,7 @@ class TagsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('标签更新成功!');
+        return successJson("标签 {$tag->name} 更新成功!");
     }
 
     /**
@@ -91,12 +91,12 @@ class TagsController extends Controller
     public function destroy($id)
     {
         try {
-            $deleted = $this->tag->delete($id);
+            $tag = $this->tag->delete($id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
 
-        return successJson('标签删除成功!');
+        return successJson("标签 {$tag->name} 删除成功!");
     }
 
     /**
@@ -107,9 +107,9 @@ class TagsController extends Controller
         try {
             $this->tag->batchDelete($request);
         } catch (\Exception $e) {
-            return errorJson();
+            return errorJson($e->getMessage());
         }
 
-        return successJson('标签批量删除成功!');
+        return successJson('批量删除标签成功!');
     }
 }

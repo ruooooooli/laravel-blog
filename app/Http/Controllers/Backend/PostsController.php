@@ -75,7 +75,7 @@ class PostsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('文章创建成功!');
+        return successJson("文章 {$post->title} 创建成功!");
     }
 
     /**
@@ -101,7 +101,7 @@ class PostsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('文章修改成功!');
+        return successJson("文章 {$post->title} 修改成功!");
     }
 
     /**
@@ -110,12 +110,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         try {
-            $deleted = $this->post->delete($id);
+            $post = $this->post->delete($id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
 
-        return successJson('文章删除成功!');
+        return successJson("文章 {$post->title} 删除成功!");
     }
 
     /**
@@ -126,9 +126,9 @@ class PostsController extends Controller
         try {
             $this->post->batchDelete($request);
         } catch (\Exception $e) {
-            return errorJson();
+            return errorJson($e->getMessage());
         }
 
-        return successJson('文章批量删除成功!');
+        return successJson('批量删除文章成功!');
     }
 }

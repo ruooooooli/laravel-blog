@@ -75,13 +75,15 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
     public function delete($tag)
     {
         if (!($tag instanceof Tag)) {
-            $tag = Tag::findOrFail($tag);
+            $tag = $this->find($tag);
         }
 
         if ($tag->posts()->exists()) {
             throw new \Exception("请先删除 {$item->name} 下面的文章!");
         }
 
-        return $tag->delete();
+        $tag->delete();
+
+        return $tag;
     }
 }

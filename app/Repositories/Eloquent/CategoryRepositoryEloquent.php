@@ -33,7 +33,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
             throw new \Exception("请先删除 {$category->name} 下面的文章!");
         }
 
-        return $category->delete();
+        $category->delete();
+
+        return $category;
     }
 
     /**

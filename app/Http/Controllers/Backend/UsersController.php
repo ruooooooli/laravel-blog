@@ -54,7 +54,7 @@ class UsersController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('用户添加成功!');
+        return successJson("用户 {$user->username} 添加成功!");
     }
 
     /**
@@ -78,7 +78,7 @@ class UsersController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('用户更新成功!');
+        return successJson("用户 {$user->username} 更新成功!");
     }
 
     /**
@@ -87,12 +87,12 @@ class UsersController extends Controller
     public function destroy($id)
     {
         try {
-            $deleted = $this->user->delete($id);
+            $user = $this->user->delete($id);
         } catch (\Exception $e) {
             return errorJson($e->getMessage());
         }
 
-        return successJson('用户删除成功!');
+        return successJson("用户 {$user->username} 删除成功!");
     }
 
     /**
@@ -106,6 +106,6 @@ class UsersController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('批量删除成功!');
+        return successJson('批量删除用户成功!');
     }
 }

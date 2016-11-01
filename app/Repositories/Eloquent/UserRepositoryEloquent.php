@@ -44,7 +44,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $user->username = $input['username'];
         $user->email    = $input['email'];
 
-        return $user->update();
+        $user->update();
+
+        return $user;
     }
 
     /**
@@ -128,6 +130,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             throw new \Exception('请先删除用户下面的文章!');
         }
 
-        return $user->delete();
+        $user->delete();
+
+        return $user;
     }
 }

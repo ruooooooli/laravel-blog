@@ -80,7 +80,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
      */
     public function update(array $input, $id)
     {
-        $post = Post::findOrFail($id);
+        $post = $this->find($id);
 
         if (Auth::user()->cant('update', $post)) {
             throw new \Exception('您当前没有权限更新这篇文章!');
@@ -125,13 +125,15 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
     public function delete($post)
     {
         if (!($post instanceof Post)) {
-            $post = Post::findOrFail($post);
+            $post = $this->find($post);
         }
 
-        if (!Auth::user()->cant('delete', $post)) {
+        if (Auth::user()->cant('delete', $post)) {
             throw new \Exception('您当前没有权限删除这篇文章!');
         }
 
-        return $post->delete();
+        $post->delete();
+
+        return $post;
     }
 }

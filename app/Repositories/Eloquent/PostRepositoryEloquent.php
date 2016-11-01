@@ -128,7 +128,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
             $post = Post::findOrFail($post);
         }
 
-        if (Auth::user()->cant('delete', $post)) {
+        if (!Auth::user()->cant('delete', $post)) {
             throw new \Exception('您当前没有权限删除这篇文章!');
         }
 

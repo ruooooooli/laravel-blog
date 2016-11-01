@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+
 use Klaravel\Ntrust\Traits\NtrustUserTrait;
 
 class User extends Authenticatable implements Transformable

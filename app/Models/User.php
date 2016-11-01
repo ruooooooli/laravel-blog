@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Prettus\Repository\Contracts\Transformable;
@@ -29,6 +30,15 @@ class User extends Authenticatable implements Transformable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * 使用的 NtrustUserTrait 里面包含了 can 方法, 导致 Laravel 自带的方法不能使用
+     * 在这里重写一下
+     */
+    public function cant($ability, $arguments = [])
+    {
+        return !(app(Gate::class)->forUser($this)->check($ability, $arguments));
+    }
 
     /**
      * 时间管理

@@ -58,8 +58,10 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         $where = array();
 
         if ($request->has('key')) {
-            $key = $request->input('key');
+            $key = $request->input('key', '');
+
             array_push($where, array('name', 'like', "%{$key}%"));
+            array_push($where, array('sort', 'like', "%{$key}%"));
         }
 
         return $where;

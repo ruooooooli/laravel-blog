@@ -33,7 +33,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
 
         if ($request->has('key')) {
             $key = $request->input('key', '');
+
             array_push($where, array('title', 'like', "%{$key}%"));
+            array_push($where, array('sort', 'like', "%{$key}%"));
         }
 
         return $where;
@@ -80,9 +82,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
     {
         $post = Post::findOrFail($id);
 
-        // if (Auth::user()->cant('update', $post)) {
-        //     throw new \Exception('您当前没有权限更新这篇文章!');
-        // }
+        if (Auth::user()->cant('update', $post)) {
+            throw new \Exception('您当前没有权限更新这篇文章!');
+        }
 
         $tags           = explode(',', $input['tags']);
         $tag            = Tag::whereIn('id', $tags)->get();

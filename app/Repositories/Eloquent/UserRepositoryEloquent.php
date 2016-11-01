@@ -83,6 +83,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         if ($request->has('key')) {
             $key = $request->input('key');
+
             array_push($where, array('username', 'like', "%{$key}%"));
             array_push($where, array('email', 'like', "%{$key}%"));
         }
@@ -123,7 +124,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             $user = $this->find($user);
         }
 
-        // 判断不能删除的情况
+        if ($user->posts()->exists()) {
+            throw new \Exception('请先删除用户下面的文章!');
+        }
 
         return $user->delete();
     }

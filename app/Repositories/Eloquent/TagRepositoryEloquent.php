@@ -37,7 +37,9 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
 
         if ($request->has('key')) {
             $key = $request->input('key');
+
             array_push($where, array('name', 'like', "%{$key}%"));
+            array_push($where, array('slug', 'like', "%{$key}%"));
         }
 
         return $where;

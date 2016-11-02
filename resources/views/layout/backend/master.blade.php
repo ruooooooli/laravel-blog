@@ -12,7 +12,10 @@
 
 @section('body')
     <div class="body">
-        @include('layout.backend.header')
+
+        @if(Auth::check())
+            @include('layout.backend.header')
+        @endif
 
         <div class="ui container">
             <div class="ui segment">

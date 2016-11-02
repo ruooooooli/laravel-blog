@@ -25601,19 +25601,11 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
             $('.come-back').on('click', function () {
                 window.history.back();
             });
-
-            if ($('#published_at').length) {
-                var picker = new Pikaday({
-                    field : $('#published_at')[0],
-                });
-            }
         },
         resetTitle : function () {
             document.title = originTitle;
         },
         initSemantic : function () {
-            $('.ui.labeled.icon.sidebar').sidebar('toggle');
-            $('.ui.sidebar').sidebar('toggle');
             $('.ui.dropdown').dropdown();
             $('.menu .item').tab();
 
@@ -25656,6 +25648,8 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
             });
         },
         initBackendLogin : function () {
+            var self = this;
+
             $('#login-button').on('click', function () {
                 var that        = $(this);
                 var login       = $.trim($('#login').val());
@@ -25679,27 +25673,12 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                     return false;
                 }
 
-                if (!that.hasClass('loading')) {
-                    that.addClass('loading').addClass('disabled');
-                }
-
-                that.closest('form').ajaxSubmit({
-                    dataType    : 'json',
-                    success     : function (response) {
-                        if (response.code == 'success') {
-                            window.location.href = that.data('url');
-                        } else {
-                            that.removeClass('loading').removeClass('disabled');
-                            swal({
-                                title   : response.message,
-                                type    : 'warning',
-                            });
-                        }
-                    }
-                });
+                self.submitForm(that);
             });
         },
         initCreateUpdateCategory : function () {
+            var self = this;
+
             $('.create-update-category-btn').on('click', function () {
                 var that = $(this);
                 var name = $.trim($('#name').val());
@@ -25714,24 +25693,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                     return false;
                 }
 
-                if (!that.hasClass('loading')) {
-                    that.addClass('loading').addClass('disabled');
-                }
-
-                that.closest('form').ajaxSubmit({
-                    dataType    : 'json',
-                    success     : function (response) {
-                        if (response.code == 'success') {
-                            window.location.href = that.data('url');
-                        } else {
-                            that.removeClass('loading').removeClass('disabled');
-                            swal({
-                                title   : response.message,
-                                type    : 'warning',
-                            });
-                        }
-                    }
-                });
+                self.submitForm(that);
             });
         },
         initSelectDelete : function () {
@@ -25789,6 +25751,8 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
             });
         },
         initCreateUpdateTag : function () {
+            var self = this;
+
             $('.create-update-tag-btn').on('click', function () {
                 var that = $(this);
                 var name = $.trim($('#name').val());
@@ -25802,27 +25766,12 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                     return false;
                 }
 
-                if (!that.hasClass('loading')) {
-                    that.addClass('loading').addClass('disabled');
-                }
-
-                that.closest('form').ajaxSubmit({
-                    dataType    : 'json',
-                    success     : function (response) {
-                        if (response.code == 'success') {
-                            window.location.href = that.data('url');
-                        } else {
-                            that.removeClass('loading').removeClass('disabled');
-                            swal({
-                                title   : response.message,
-                                type    : 'warning',
-                            });
-                        }
-                    }
-                });
+                self.submitForm(that);
             });
         },
         initCreateUpdateUser : function () {
+            var self = this;
+
             $('.create-update-user-btn').on('click', function () {
                 var that            = $(this);
                 var username        = $.trim($('#username').val());
@@ -25867,27 +25816,12 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                     }
                 }
 
-                if (!that.hasClass('loading')) {
-                    that.addClass('loading').addClass('disabled');
-                }
-
-                that.closest('form').ajaxSubmit({
-                    dataType    : 'json',
-                    success     : function (response) {
-                        if (response.code == 'success') {
-                            window.location.href = that.data('url');
-                        } else {
-                            that.removeClass('loading').removeClass('disabled');
-                            swal({
-                                title   : response.message,
-                                type    : 'warning',
-                            });
-                        }
-                    }
-                });
+                self.submitForm(that);
             });
         },
         initCreateUpdatePost : function () {
+            var self = this;
+
             $('.create-update-post-btn').on('click', function () {
                 var that        = $(this);
                 var title       = $.trim($('#title').val());
@@ -25920,24 +25854,7 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                     return false;
                 }
 
-                if (!that.hasClass('loading')) {
-                    that.addClass('loading').addClass('disabled');
-                }
-
-                that.closest('form').ajaxSubmit({
-                    dataType    : 'json',
-                    success     : function (response) {
-                        if (response.code == 'success') {
-                            window.location.href = that.data('url');
-                        } else {
-                            that.removeClass('loading').removeClass('disabled');
-                            swal({
-                                title   : response.message,
-                                type    : 'warning',
-                            });
-                        }
-                    }
-                });
+                self.submitForm(that);
             });
         },
         initUploadImage : function () {
@@ -26028,6 +25945,26 @@ a.version="2.15.1",b(rb),a.fn=Se,a.min=tb,a.max=ub,a.now=Fe,a.utc=j,a.unix=Jc,a.
                     $('#markdown-html').html(content);
                 });
             }
+        },
+        submitForm : function (that) {
+            if (!that.hasClass('loading')) {
+                that.addClass('loading').addClass('disabled');
+            }
+
+            that.closest('form').ajaxSubmit({
+                dataType    : 'json',
+                success     : function (response) {
+                    if (response.code == 'success') {
+                        window.location.href = that.data('url');
+                    } else {
+                        that.removeClass('loading').removeClass('disabled');
+                        swal({
+                            title   : response.message,
+                            type    : 'warning',
+                        });
+                    }
+                }
+            });
         },
     };
 

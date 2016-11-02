@@ -21,6 +21,7 @@ class Markdown
     {
         $value = $this->markdown->setBreaksEnabled(true)->text($value);
         $value = Purifier::clean($value);
+
         return str_replace("<pre><code>", '<pre><code class="language-php">', $value);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use Carbon\Carbon;
 use App\Models\User;
-use Input;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
@@ -40,14 +40,13 @@ class LoginController extends Controller
         }
 
         if ($this->guard()->attempt($credentials, false)) {
-            $request->session()->regenerate();
-            return successJson('登录成功!');
+            return $this->sendLoginResponse($request);
         }
 
         return errorJson('登录账号或密码错误!请重新输入!');
     }
 
-    public function validateLogin(Request $request)
+    protected function validateLogin(Request $request)
     {
         $rules = array(
             'login'     => 'required',
@@ -72,17 +71,33 @@ class LoginController extends Controller
         return redirect(route('backend::auth.login.get'));
     }
 
-    private function username()
+    protected function username()
     {
-        return (Str::contains(Input::get('login'), '@')) ? 'email' : 'username';
+        $login = \Input::input('login');
+
+        return filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
     }
 
-    private function createDefaultUser()
+    protected function createDefaultUser()
     {
         return User::create([
             'username'  => 'ruooooooli',
             'email'     => 'ruooooooli@gmail.com',
             'password'  => bcrypt('admin'),
         ]);
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        $user = \Auth::user();
+        $user->login_count  += 1;
+        $user->last_login   = Carbon::now();
+        $user->update();
+
+        return successJson('登录成功!');
     }
 }

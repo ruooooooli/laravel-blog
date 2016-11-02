@@ -47,7 +47,7 @@
             </a>
         </div>
         <div class="column">
-            <a class="ui card" href="">
+            <a class="ui card" href="{{ route('backend::user.index') }}">
                 <div class="content">
                     <div class="header">用户</div>
                     <div class="description">

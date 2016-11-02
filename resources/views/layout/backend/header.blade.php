@@ -35,8 +35,8 @@
         <div class="ui simple dropdown item">
             <i class="large lock icon"></i>权限
             <div class="menu">
-                <a class="item" href="#">角色列表</a>
-                <a class="item" href="#">添加角色</a>
+                <a class="item" href="{{ route('backend::role.index') }}">角色列表</a>
+                <a class="item" href="{{ route('backend::role.create') }}">添加角色</a>
             </div>
         </div>
         <div class="ui simple dropdown item">

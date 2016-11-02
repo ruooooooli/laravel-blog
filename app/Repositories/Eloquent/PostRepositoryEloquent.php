@@ -14,41 +14,28 @@ use App\Repositories\Contracts\PostRepository;
 
 class PostRepositoryEloquent extends BaseRepository implements PostRepository
 {
+    /**
+     * 设置哪些字段可以被搜索
+     */
+    protected $fieldSearchable = [
+        'title' => 'like',
+        'sort'  => 'like',
+    ];
+
+    /**
+     * 关联的 model
+     */
     public function model()
     {
         return Post::class;
     }
 
+    /**
+     * 启动方法 设置使用 RequestCriteria
+     */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
-    }
-
-    /**
-     * 获取查询条件
-     */
-    public function getSearchWhere($request)
-    {
-        $where = array();
-
-        if ($request->has('key')) {
-            $key = $request->input('key', '');
-
-            array_push($where, array('title', 'like', "%{$key}%"));
-            array_push($where, array('sort', 'like', "%{$key}%"));
-        }
-
-        return $where;
-    }
-
-    /**
-     * 获取搜索结果
-     */
-    public function getSearchResult($request)
-    {
-        $this->applyConditions($this->getSearchWhere($request));
-
-        return $this->orderBy('id', 'desc')->paginate(config('blog.pageSize'));
     }
 
     /**

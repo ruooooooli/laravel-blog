@@ -33,10 +33,10 @@ class CategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        $key        = $request->input('key', '');
-        $categories = $this->category->getSearchResult($request);
+        $search     = $request->input('search', '');
+        $categories = $this->category->paginate(config('blog.pageSize'));
 
-        return view('backend.category.index', compact('categories', 'key'));
+        return view('backend.category.index', compact('categories', 'search'));
     }
 
     /**

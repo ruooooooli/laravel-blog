@@ -63,7 +63,7 @@
 
                 <label for="uploadfile" class="ui icon blue button">
                     <i class="cloud upload icon"></i>
-                    上传文件
+                    上传图片(自动插入到光标位置)
                 </label>
 
                 <input type="file" id="uploadfile" style="display:none" name="uploadfile">

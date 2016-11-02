@@ -47,10 +47,10 @@ class PostsController extends Controller
      */
     public function index(Request $request)
     {
-        $key    = $request->input('key', '');
-        $posts  = $this->post->getSearchResult($request);
+        $search     = $request->input('search', '');
+        $posts      = $this->post->paginate(config('blog.pageSize'));
 
-        return view('backend.post.index', compact('posts', 'key'));
+        return view('backend.post.index', compact('posts', 'search'));
     }
 
     /**

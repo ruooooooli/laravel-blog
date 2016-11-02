@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('layout.backend.table_search', ['search' => 'backend::category.index', 'delete' => route('backend::category.batch')])
+@include('layout.backend.table_search', ['searchRoute' => 'backend::category.index', 'delete' => route('backend::category.batch')])
 
 @inject('CategoryPresenter', 'App\Presenters\CategoryPresenter')
 

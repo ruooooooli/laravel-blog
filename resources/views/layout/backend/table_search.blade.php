@@ -4,9 +4,9 @@
     </div>
     <div class="right menu">
         <div class="item">
-            {!! Form::open(['route' => $search, 'method' => 'get']) !!}
+            {!! Form::open(['route' => $searchRoute, 'method' => 'get']) !!}
             <div class="ui icon input">
-                <input type="text" name="key" placeholder="请输入关键词搜索" value="{{ $key }}">
+                <input type="text" name="search" placeholder="请输入关键词搜索" value="{{ $search }}">
                 <i class="search link icon"></i>
             </div>
             {!! Form::close() !!}

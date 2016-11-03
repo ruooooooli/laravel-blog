@@ -2,7 +2,7 @@
 
 @section('stylesheets')
 
-    <link rel="stylesheet" href="{{ elixir('assets/css/styles.css') }}" media="screen" title="no title">
+    <link rel="stylesheet" href="{{ elixir('assets/css/backend-styles.css') }}" media="screen" title="no title">
 
     @yield('stylesheets-inpage')
 
@@ -31,7 +31,7 @@
 
     @include('layout.backend.prefix_js')
 
-    <script src="{{ elixir('assets/js/scripts.js') }}" charset="utf-8"></script>
+    <script src="{{ elixir('assets/js/backend-scripts.js') }}" charset="utf-8"></script>
 
     @yield('javascripts-inpage')
 

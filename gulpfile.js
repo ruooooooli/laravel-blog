@@ -1,6 +1,28 @@
-const elixir = require('laravel-elixir');
+const elixir    = require('laravel-elixir');
+const path      = require('path');
 
-require('laravel-elixir-vue');
+require('laravel-elixir-vue-2');
+require('laravel-elixir-webpack-official');
+
+Elixir.webpack.config.module.loaders = [];
+Elixir.webpack.mergeConfig({
+    resolveLoader: {
+        root: path.join(__dirname, 'node_modules'),
+    },
+    module: {
+        loaders: [
+            {
+                test : /\.js$/,
+                loader : 'babel',
+                exclude : /node_modules/
+            },
+            {
+                test : /\.css$/,
+                loader : 'style!css'
+            }
+        ]
+    }
+});
 
 /*
  |--------------------------------------------------------------------------
@@ -34,7 +56,7 @@ elixir(mix => {
             'prism.css',
             'pikaday.css',
             'main.css',
-        ], 'public/assets/css/styles.css')
+        ], 'public/assets/css/backend-styles.css')
 
         .scripts([
             'jquery.min.js',
@@ -48,10 +70,16 @@ elixir(mix => {
             'zh-cn.min.js',
             'pikaday.js',
             'main.js',
-        ], 'public/assets/js/scripts.js')
+        ], 'public/assets/js/backend-scripts.js')
+
+        .webpack(
+            './resources/assets/js/app.js',
+            './public/assets/js'
+        )
 
         .version([
-            'assets/css/styles.css',
-            'assets/js/scripts.js',
+            'assets/css/backend-styles.css',
+            'assets/js/backend-scripts.js',
+            'assets/js/app.js',
         ]);
 });

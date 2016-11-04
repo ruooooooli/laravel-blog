@@ -6,19 +6,19 @@ require('laravel-elixir-webpack-official');
 
 Elixir.webpack.config.module.loaders = [];
 Elixir.webpack.mergeConfig({
-    resolveLoader: {
-        root: path.join(__dirname, 'node_modules'),
+    resolveLoader : {
+        root : path.join(__dirname, 'node_modules'),
     },
-    module: {
-        loaders: [
+    module : {
+        loaders : [
             {
-                test : /\.js$/,
-                loader : 'babel',
+                test    : /\.js$/,
+                loader  : 'babel',
                 exclude : /node_modules/
             },
             {
-                test : /\.css$/,
-                loader : 'style!css'
+                test    : /\.css$/,
+                loader  : 'style!css'
             }
         ]
     }

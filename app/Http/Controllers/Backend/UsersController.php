@@ -9,6 +9,9 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\Contracts\UserRepository;
 
+/**
+ * 用户控制器
+ */
 class UsersController extends Controller
 {
     /**

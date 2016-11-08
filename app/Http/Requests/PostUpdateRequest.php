@@ -16,7 +16,7 @@ class PostUpdateRequest extends Request
         return [
             'title'             => "required|min:2|max:128|unique:posts,title,{$id}",
             'category_id'       => 'required',
-            'markdown-source'   => 'required'
+            'markdown-source'   => 'required',
         ];
     }
 

@@ -8,16 +8,27 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\RoleRepository;
 
-
+/**
+ * 角色控制器
+ */
 class RolesController extends Controller
 {
+    /**
+     * repository
+     */
     protected $role;
 
+    /**
+     * 构造方法
+     */
     public function __construct(RoleRepository $role)
     {
         $this->role = $role;
     }
 
+    /**
+     * 角色列表
+     */
     public function index(Request $request)
     {
         $search = $request->input('search', '');
@@ -26,6 +37,9 @@ class RolesController extends Controller
         return view('backend.role.index', compact('search', 'roles'));
     }
 
+    /**
+     * 添加角色
+     */
     public function create()
     {
         return view('backend.role.create');

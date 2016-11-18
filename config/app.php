@@ -182,7 +182,6 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
-        Klaravel\Ntrust\NtrustServiceProvider::class,
 
     ],
 
@@ -235,7 +234,6 @@ return [
         'Form'          => Collective\Html\FormFacade::class,
         'Html'          => Collective\Html\HtmlFacade::class,
         'Purifier'      => Mews\Purifier\Facades\Purifier::class,
-        'Ntrust'        => Klaravel\Ntrust\NtrustFacade::class,
     ],
 
 ];

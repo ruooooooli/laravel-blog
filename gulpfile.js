@@ -37,13 +37,6 @@ Elixir.webpack.mergeConfig({
 
 elixir(mix => {
     mix
-        .copy('semantic/dist/semantic.js', 'resources/assets/js/semantic.js')
-        .copy('semantic/dist/semantic.css', 'resources/assets/css/semantic.css')
-        .copy('semantic/dist/semantic.min.js', 'resources/assets/js/semantic.min.js')
-        .copy('semantic/dist/semantic.min.css', 'resources/assets/css/semantic.min.css')
-        .copy('semantic/src/themes/default/assets/fonts', 'public/assets/fonts/')
-        .copy('semantic/src/themes/default/assets/images', 'public/assets/images/')
-
         .sass('markdown.scss', 'resources/assets/css/markdown-one.css')
         .sass('prism.scss', 'resources/assets/css/prism.css')
 

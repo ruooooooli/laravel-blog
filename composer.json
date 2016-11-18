@@ -15,8 +15,7 @@
         "mews/purifier": "^2.0",
         "spatie/laravel-pjax": "^1.3",
         "league/fractal": "^0.14.0",
-        "erusev/parsedown": "^1.6",
-        "klaravel/ntrust": "^1.1"
+        "erusev/parsedown": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

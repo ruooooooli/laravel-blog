@@ -2,27 +2,27 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: url(/assets/fonts/Lato.eot);
-  src: local('Lato'), local('Lato Regular'), local('Lato-Regular'), url(/assets/fonts/Lato.eot?#iefix) format('embedded-opentype'), url(/assets/fonts/Lato.woff2) format('woff2'), url(/assets/fonts/Lato.woff) format('woff'), url(/assets/fonts/Lato.ttf) format('truetype'), url(/assets/fonts/Lato.svg#Lato) format('svg');
+  src: url(/assets/fonts/Lato-Regular.eot);
+  src: local('Lato Regular'), local('Lato-Regular'), local('Lato'), url(/assets/fonts/Lato-Regular.ttf) format('truetype'), url(/assets/fonts/Lato-Regular.woff) format('woff'), url(/assets/fonts/Lato-Regular.woff2) format('woff2'), url(/assets/fonts/Lato-Regular.eot?#iefix) format('embedded-opentype'), url(/assets/fonts/Lato-Regular.svg#Lato) format('svg');
 }
 
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'), url(/assets/fonts/Lato-Bold.woff2) format('woff2'), url(/assets/fonts/Lato-Bold.woff) format('woff'), url(/assets/fonts/Lato-Bold.ttf) format('truetype');
+  src: local('Lato Bold'), local('Lato-Bold'), url(/assets/fonts/Lato-Bold.ttf) format('truetype'), url(/assets/fonts/Lato-Bold.woff) format('woff'), url(/assets/fonts/Lato-Bold.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 400;
-  src: local('Lato Italic'), local('Lato-Italic'), url(/assets/fonts/Lato-Italic.woff2) format('woff2'), url(/assets/fonts/Lato-Italic.woff) format('woff'), url(/assets/fonts/Lato-Italic.ttf) format('truetype');
+  src: local('Lato Italic'), local('Lato-Italic'), url(/assets/fonts/Lato-Italic.ttf) format('truetype'), url(/assets/fonts/Lato-Italic.woff) format('woff'), url(/assets/fonts/Lato-Italic.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Lato';
   font-style: italic;
   font-weight: 700;
-  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(/assets/fonts/Lato-Bold-Italic.woff2) format('woff2'), url(/assets/fonts/Lato-Bold-Italic.woff) format('woff'), url(/assets/fonts/Lato-Bold-Italic.ttf) format('truetype');
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(/assets/fonts/Lato-Bold-Italic.ttf) format('truetype'), url(/assets/fonts/Lato-Bold-Italic.woff) format('woff'), url(/assets/fonts/Lato-Bold-Italic.woff2) format('woff2');
 }

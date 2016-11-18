@@ -9,13 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-use Klaravel\Ntrust\Traits\NtrustUserTrait;
-
 class User extends Authenticatable implements Transformable
 {
-    use Notifiable, TransformableTrait, NtrustUserTrait;
-
-    protected static $roleProfile = 'user';
+    use Notifiable, TransformableTrait;
 
     /**
      * 可填充属性
@@ -32,7 +28,6 @@ class User extends Authenticatable implements Transformable
     ];
 
     /**
-     * 使用的 NtrustUserTrait 里面包含了 can 方法, 导致 Laravel 自带的方法不能使用
      * 在这里重写一下
      */
     public function cant($ability, $arguments = [])

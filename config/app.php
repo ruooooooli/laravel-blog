@@ -229,6 +229,7 @@ return [
         'URL'           => Illuminate\Support\Facades\URL::class,
         'Validator'     => Illuminate\Support\Facades\Validator::class,
         'View'          => Illuminate\Support\Facades\View::class,
+
         'Debugbar'      => Barryvdh\Debugbar\Facade::class,
         'Image'         => Intervention\Image\Facades\Image::class,
         'Form'          => Collective\Html\FormFacade::class,

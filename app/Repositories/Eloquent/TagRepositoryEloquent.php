@@ -10,41 +10,26 @@ use App\Repositories\Contracts\TagRepository;
 
 class TagRepositoryEloquent extends BaseRepository implements TagRepository
 {
-    /**
-     * 设置哪些字段可以被搜索
-     */
     protected $fieldSearchable = [
         'name'  => 'like',
         'slug'  => 'like',
     ];
 
-    /**
-     * 关联的 model
-     */
     public function model()
     {
         return Tag::class;
     }
 
-    /**
-     * 启动方法 设置使用 RequestCriteria
-     */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    /**
-     * 获取标签列表 在添加文章的时候使用
-     */
     public function getTagList()
     {
         return $this->model->get();
     }
 
-    /**
-     * 处理批量删除
-     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');
@@ -56,9 +41,6 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
         }
     }
 
-    /**
-     * 处理删除
-     */
     public function delete($tag)
     {
         if (!($tag instanceof Tag)) {

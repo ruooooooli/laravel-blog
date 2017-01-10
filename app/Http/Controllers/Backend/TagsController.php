@@ -10,27 +10,15 @@ use App\Http\Requests\TagCreateRequest;
 use App\Http\Requests\TagUpdateRequest;
 use App\Repositories\Contracts\TagRepository;
 
-/**
- * 标签控制器
- */
 class TagsController extends Controller
 {
-    /**
-     * 标签
-     */
     protected $tag;
 
-    /**
-     * 构造方法
-     */
     public function __construct(TagRepository $tag)
     {
         $this->tag = $tag;
     }
 
-    /**
-     * 显示标签列表
-     */
     public function index(Request $request)
     {
         $search     = $request->input('search', '');
@@ -39,17 +27,11 @@ class TagsController extends Controller
         return view('backend.tag.index', compact('tags', 'search'));
     }
 
-    /**
-     * 显示添加标签的页面
-     */
     public function create()
     {
         return view('backend.tag.create');
     }
 
-    /**
-     * 处理创建标签的请求
-     */
     public function store(TagCreateRequest $request)
     {
         try {
@@ -58,12 +40,9 @@ class TagsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson("标签 {$tag->name} 添加成功!");
+        return successJson("标签 : {$tag->name} 添加成功!");
     }
 
-    /**
-     * 显示编辑标签的页面
-     */
     public function edit($id)
     {
         $tag = $this->tag->find($id);
@@ -71,9 +50,6 @@ class TagsController extends Controller
         return view('backend.tag.edit', compact('tag'));
     }
 
-    /**
-     * 处理更新标签的请求
-     */
     public function update(TagUpdateRequest $request, $id)
     {
         try {
@@ -82,12 +58,9 @@ class TagsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson("标签 {$tag->name} 更新成功!");
+        return successJson("标签 : {$tag->name} 更新成功!");
     }
 
-    /**
-     * 删除标签
-     */
     public function destroy($id)
     {
         try {
@@ -96,12 +69,9 @@ class TagsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson("标签 {$tag->name} 删除成功!");
+        return successJson("标签 : {$tag->name} 删除成功!");
     }
 
-    /**
-     * 批量删除
-     */
     public function batch(Request $request)
     {
         try {
@@ -110,6 +80,6 @@ class TagsController extends Controller
             return errorJson($e->getMessage());
         }
 
-        return successJson('批量删除标签成功!');
+        return successJson('批量删除成功!');
     }
 }

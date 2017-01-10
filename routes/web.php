@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
-
 Route::group([
     'namespace' => 'Frontend',
     'as'        => 'frontend::',
@@ -85,15 +74,6 @@ Route::group([
         'except' => ['show']
     ]);
 
-    Route::delete('role/batch', [
-        'uses'  => 'RolesController@batch',
-        'as'    => 'role.batch',
-    ]);
-
-    Route::resource('role', 'RolesController', [
-        'except' => ['show']
-    ]);
-
     Route::delete('user/batch', [
         'uses'  => 'UsersController@batch',
         'as'    => 'user.batch',
@@ -102,5 +82,4 @@ Route::group([
     Route::resource('user', 'UsersController', [
         'except' => ['show']
     ]);
-
 });

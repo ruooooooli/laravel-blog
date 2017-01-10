@@ -32,20 +32,6 @@
                 <a class="item" href="{{ route('backend::user.create') }}">添加用户</a>
             </div>
         </div>
-        <div class="ui simple dropdown item">
-            <i class="large lock icon"></i>权限
-            <div class="menu">
-                <a class="item" href="{{ route('backend::role.index') }}">角色列表</a>
-                <a class="item" href="{{ route('backend::role.create') }}">添加角色</a>
-            </div>
-        </div>
-        <div class="ui simple dropdown item">
-            <i class="large settings icon"></i>系统
-            <div class="menu">
-                <a class="item" href="#">角色列表</a>
-                <a class="item" href="#">添加角色</a>
-            </div>
-        </div>
         <div class="right menu">
             <div class="ui simple dropdown item">
                 <i class="large user icon"></i>{{ Auth::user()->email }}

@@ -66,13 +66,13 @@
             </a>
         </div>
         <div class="column">
-            <a class="ui card" href="{{ route('backend::role.index') }}">
+            <a class="ui card" href="">
                 <div class="content">
                     <div class="header">角色</div>
                     <div class="description">
                         <div class="ui green horizontal statistic">
                             <div class="value">
-                                {{ \App\Models\Role::count() }} 个
+
                             </div>
                         </div>
                     </div>

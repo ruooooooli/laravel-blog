@@ -14,33 +14,21 @@ use App\Repositories\Contracts\PostRepository;
 
 class PostRepositoryEloquent extends BaseRepository implements PostRepository
 {
-    /**
-     * 设置哪些字段可以被搜索
-     */
     protected $fieldSearchable = [
         'title' => 'like',
         'sort'  => 'like',
     ];
 
-    /**
-     * 关联的 model
-     */
     public function model()
     {
         return Post::class;
     }
 
-    /**
-     * 启动方法 设置使用 RequestCriteria
-     */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    /**
-     * 处理创建文章 重写了父类的方法
-     */
     public function create(array $input)
     {
         $tags           = explode(',', $input['tags']);
@@ -62,9 +50,6 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return $post;
     }
 
-    /**
-     * 处理创建文章 重写了父类的方法
-     */
     public function update(array $input, $id)
     {
         $post = $this->find($id);
@@ -92,9 +77,6 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return $post;
     }
 
-    /**
-     * 处理批量删除
-     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');
@@ -106,9 +88,6 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         }
     }
 
-    /**
-     * 处理删除文章
-     */
     public function delete($post)
     {
         if (!($post instanceof Post)) {

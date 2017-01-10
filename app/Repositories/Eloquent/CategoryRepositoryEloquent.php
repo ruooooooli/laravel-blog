@@ -10,33 +10,21 @@ use App\Repositories\Contracts\CategoryRepository;
 
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
-    /**
-     * 设置哪些字段可以被搜索
-     */
     protected $fieldSearchable = [
         'name'  => 'like',
         'sort'  => 'like',
     ];
 
-    /**
-     * 关联的 model
-     */
     public function model()
     {
         return Category::class;
     }
 
-    /**
-     * 启动方法 设置使用 RequestCriteria
-     */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    /**
-     * 重写父类的删除方法
-     */
     public function delete($category)
     {
         if (!($category instanceof Category)) {
@@ -52,9 +40,6 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         return $category;
     }
 
-    /**
-     * 处理批量删除
-     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');
@@ -66,9 +51,6 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         }
     }
 
-    /**
-     * 获取分类列表 在添加文章的时候使用
-     */
     public function getCategoryList()
     {
         return $this->model->where('display', '=', 'Y')->get()->pluck('name', 'id');

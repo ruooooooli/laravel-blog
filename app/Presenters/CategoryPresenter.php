@@ -13,9 +13,6 @@ class CategoryPresenter extends FractalPresenter
         return new CategoryTransformer();
     }
 
-    /**
-     * 转换分类的 是否显示 名称
-     */
     public function showDisplayName($display)
     {
         return ($display == 'Y') ? '<i class="green icon checkmark"></i>' : '<i class="red icon remove"></i>';

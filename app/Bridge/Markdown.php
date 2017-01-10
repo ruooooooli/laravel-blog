@@ -2,13 +2,12 @@
 
 namespace App\Bridge;
 
-use Parsedown;
 use Purifier;
+use Parsedown;
 
 class Markdown
 {
     protected $markdown;
-
     protected $purifier;
 
     public function __construct()

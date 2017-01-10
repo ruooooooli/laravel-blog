@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class TagUpdateRequest extends FormRequest
+class TagUpdateRequest extends Request
 {
     public function authorize()
     {

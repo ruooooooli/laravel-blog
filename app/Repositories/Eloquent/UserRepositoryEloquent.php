@@ -10,33 +10,21 @@ use App\Repositories\Contracts\UserRepository;
 
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
-    /**
-     * 设置哪些字段可以被搜索
-     */
     protected $fieldSearchable = [
         'username'  => 'like',
         'email'     => 'like',
     ];
 
-    /**
-     * 关联的 model
-     */
     public function model()
     {
         return User::class;
     }
 
-    /**
-     * 启动方法 设置使用 RequestCriteria
-     */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    /**
-     * 创建
-     */
     public function create(array $input)
     {
         $input['password'] = bcrypt($input['password']);
@@ -44,9 +32,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return User::create($input);
     }
 
-    /**
-     * 更新
-     */
     public function update(array $input, $id)
     {
         $user = $this->find($id);
@@ -63,9 +48,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return $user;
     }
 
-    /**
-     * 默认更新用户可以不用填写密码 如果填写了请保持一致
-     */
     private function checkPassword($input)
     {
         $password           = $input['password'];
@@ -90,9 +72,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return false;
     }
 
-    /**
-     * 处理批量删除
-     */
     public function batchDelete($request)
     {
         $idString   = $request->input('idstring');
@@ -104,9 +83,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
     }
 
-    /**
-     * 处理删除
-     */
     public function delete($user)
     {
         if (!($user instanceof User)) {

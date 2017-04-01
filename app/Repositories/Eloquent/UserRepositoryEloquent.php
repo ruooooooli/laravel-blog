@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-
+use Exception;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
@@ -53,17 +53,17 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $password           = $input['password'];
         $passwordConfirm    = $input['password_confirmation'];
 
-        if (!empty($password)) {
+        if (! empty($password)) {
             if (mb_strlen($password) < 6) {
-                throw new \Exception('密码最少6个字符!');
+                throw new Exception('密码最少6个字符!');
             }
 
             if (mb_strlen($password) > 32) {
-                throw new \Exception('密码最多32个字符!');
+                throw new Exception('密码最多32个字符!');
             }
 
             if ($password !== $passwordConfirm) {
-                throw new \Exception('请保持两次输入的密码一致!');
+                throw new Exception('请保持两次输入的密码一致!');
             }
 
             return true;
@@ -85,12 +85,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function delete($user)
     {
-        if (!($user instanceof User)) {
+        if (! ($user instanceof User)) {
             $user = $this->find($user);
         }
 
         if ($user->posts()->exists()) {
-            throw new \Exception('请先删除用户下面的文章!');
+            throw new Exception('请先删除用户下面的文章!');
         }
 
         $user->delete();

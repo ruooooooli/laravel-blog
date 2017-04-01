@@ -11,7 +11,7 @@
             <div class="six wide column">
                 <div class="ui segments" align="center">
                     <div class="ui inverted blue padded segment">
-                        <span class="ui header">Welcome Login</span>
+                        <span class="ui header">欢迎登录</span>
                     </div>
                     <div class="ui segment">
                         {!! Form::open(['route' => 'backend::auth.login.post', 'class' => 'ui form']) !!}

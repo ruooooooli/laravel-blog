@@ -3,12 +3,12 @@
 namespace App\Exceptions;
 
 use Exception;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {

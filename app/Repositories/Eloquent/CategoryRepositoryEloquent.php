@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Eloquent;
 
+use Exception;
+use App\Models\Category;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-
-use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepository;
 
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
@@ -27,12 +27,12 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
 
     public function delete($category)
     {
-        if (!($category instanceof Category)) {
+        if (! ($category instanceof Category)) {
             $category = $this->find($category);
         }
 
         if ($category->posts()->exists()) {
-            throw new \Exception("请先删除 {$category->name} 下面的文章!");
+            throw new Exception("请先删除 {$category->name} 下面的文章!");
         }
 
         $category->delete();

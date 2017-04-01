@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-
+use Exception;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
@@ -45,7 +45,7 @@ class PostsController extends Controller
     {
         try {
             $post = $this->post->create($request->all());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -65,7 +65,7 @@ class PostsController extends Controller
     {
         try {
             $post = $this->post->update($request->all(), $id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -76,7 +76,7 @@ class PostsController extends Controller
     {
         try {
             $post = $this->post->delete($id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -87,7 +87,7 @@ class PostsController extends Controller
     {
         try {
             $this->post->batchDelete($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 

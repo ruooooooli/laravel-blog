@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('responseJson')) {
+if (! function_exists('responseJson')) {
     function responseJson($code, $message = '', $data = array(), $status = 200)
     {
         return response()->json(array(
@@ -12,14 +12,14 @@ if (!function_exists('responseJson')) {
     }
 }
 
-if (!function_exists('successJson')) {
+if (! function_exists('successJson')) {
     function successJson($message = '', $data = array(), $status = 200)
     {
         return responseJson('success', $message, $data, $status);
     }
 }
 
-if (!function_exists('errorJson')) {
+if (! function_exists('errorJson')) {
     function errorJson($message = '', $data = array(), $status = 200)
     {
         return responseJson('error', $message, $data, $status);

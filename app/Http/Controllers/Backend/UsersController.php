@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Exception;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
@@ -35,7 +35,7 @@ class UsersController extends Controller
     {
         try {
             $user = $this->user->create($request->all());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -53,7 +53,7 @@ class UsersController extends Controller
     {
         try {
             $user = $this->user->update($request->all(), $id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -64,7 +64,7 @@ class UsersController extends Controller
     {
         try {
             $user = $this->user->delete($id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -75,7 +75,7 @@ class UsersController extends Controller
     {
         try {
             $this->user->batchDelete($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 

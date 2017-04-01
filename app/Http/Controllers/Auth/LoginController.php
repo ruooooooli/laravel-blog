@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Exception;
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -18,7 +20,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('backend::auth.login.get');
-
         $this->middleware('guest', ['except' => 'logout']);
     }
 
@@ -35,7 +36,7 @@ class LoginController extends Controller
 
         try {
             $this->validateLogin($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -73,7 +74,7 @@ class LoginController extends Controller
 
     protected function username()
     {
-        $login = \Input::input('login');
+        $login = Input::input('login');
 
         return filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
     }
@@ -93,7 +94,7 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        $user = \Auth::user();
+        $user               = Auth::user();
         $user->login_count  += 1;
         $user->last_login   = Carbon::now();
         $user->update();

@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-
+use Exception;
 use App\Models\Tag;
 use App\Repositories\Contracts\TagRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 class TagRepositoryEloquent extends BaseRepository implements TagRepository
 {
@@ -43,12 +43,12 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
 
     public function delete($tag)
     {
-        if (!($tag instanceof Tag)) {
+        if (! ($tag instanceof Tag)) {
             $tag = $this->find($tag);
         }
 
         if ($tag->posts()->exists()) {
-            throw new \Exception("请先删除 {$item->name} 下面的文章!");
+            throw new Exception("请先删除 {$item->name} 下面的文章!");
         }
 
         $tag->delete();

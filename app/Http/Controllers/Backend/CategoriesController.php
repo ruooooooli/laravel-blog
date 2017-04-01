@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-
+use Exception;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
@@ -36,7 +36,7 @@ class CategoriesController extends Controller
     {
         try {
             $category = $this->category->create($request->getFillData());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -54,7 +54,7 @@ class CategoriesController extends Controller
     {
         try {
             $category = $this->category->update($request->getFillData(), $id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -65,7 +65,7 @@ class CategoriesController extends Controller
     {
         try {
             $category = $this->category->delete($id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -76,7 +76,7 @@ class CategoriesController extends Controller
     {
         try {
             $this->category->batchDelete($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson();
         }
 

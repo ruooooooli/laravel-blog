@@ -2,15 +2,15 @@
 
 namespace App\Repositories\Eloquent;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-
 use Auth;
+use Exception;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Bridge\Markdown;
 use App\Repositories\Contracts\PostRepository;
+use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 class PostRepositoryEloquent extends BaseRepository implements PostRepository
 {
@@ -55,7 +55,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         $post = $this->find($id);
 
         if (Auth::user()->cant('update', $post)) {
-            throw new \Exception('您当前没有权限更新这篇文章!');
+            throw new Exception('您当前没有权限更新这篇文章!');
         }
 
         $tags           = explode(',', $input['tags']);
@@ -90,12 +90,12 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
 
     public function delete($post)
     {
-        if (!($post instanceof Post)) {
+        if (! ($post instanceof Post)) {
             $post = $this->find($post);
         }
 
         if (Auth::user()->cant('delete', $post)) {
-            throw new \Exception('您当前没有权限删除这篇文章!');
+            throw new Exception('您当前没有权限删除这篇文章!');
         }
 
         $post->delete();

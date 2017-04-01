@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-
+use Exception;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TagCreateRequest;
 use App\Http\Requests\TagUpdateRequest;
@@ -36,7 +36,7 @@ class TagsController extends Controller
     {
         try {
             $tag = $this->tag->create($request->all());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -54,7 +54,7 @@ class TagsController extends Controller
     {
         try {
             $tag = $this->tag->update($request->all(), $id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -65,7 +65,7 @@ class TagsController extends Controller
     {
         try {
             $tag = $this->tag->delete($id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -76,7 +76,7 @@ class TagsController extends Controller
     {
         try {
             $this->tag->batchDelete($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 

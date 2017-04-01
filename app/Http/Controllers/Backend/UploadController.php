@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-
 use Image;
+use Exception;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UploadController extends Controller
@@ -17,7 +17,7 @@ class UploadController extends Controller
     {
         try {
             $result = $this->doUpload($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return errorJson($e->getMessage());
         }
 
@@ -27,7 +27,7 @@ class UploadController extends Controller
     private function doUpload(Request $request)
     {
         if (!$request->hasFile(config('blog.uploadFileKey'))) {
-            throw new \Exception('请选择上传的文件!');
+            throw new Exception('请选择上传的文件!');
         }
 
         $this->file = $request->file(config('blog.uploadFileKey'));
@@ -42,7 +42,7 @@ class UploadController extends Controller
         $extension = strtolower($this->file->getClientOriginalExtension());
 
         if (!in_array($extension, $this->allowedExtensions)) {
-            throw new \Exception('请上传:'.implode($this->allowedExtensions, ',').'类型的文件!');
+            throw new Exception('请上传:'.implode($this->allowedExtensions, ',').'类型的文件!');
         }
     }
 

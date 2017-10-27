@@ -27,7 +27,6 @@ Route::group([
         'uses'  => 'LoginController@logout',
         'as'    => 'logout',
     ]);
-
 });
 
 Route::group([

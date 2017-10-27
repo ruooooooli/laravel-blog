@@ -20,9 +20,9 @@ class TagCreateRequest extends Request
     {
         return [
             'name.required' => '请输入标签的名称!',
-            'name.min'      => '标签名称最小2个字符!',
-            'name.max'      => '标签名称最大32个字符!',
-            'name.unique'   => '标签名称已经存在!',
+            'name.min' => '标签名称最小2个字符!',
+            'name.max' => '标签名称最大32个字符!',
+            'name.unique' => '标签名称已经存在!',
         ];
     }
 }

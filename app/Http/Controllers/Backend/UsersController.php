@@ -20,8 +20,8 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        $search     = $request->input('search', '');
-        $users      = $this->user->paginate(config('blog.pageSize'));
+        $search = $request->input('search', '');
+        $users = $this->user->paginate(config('blog.pageSize'));
 
         return view('backend.user.index', compact('users', 'search'));
     }

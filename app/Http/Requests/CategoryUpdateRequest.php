@@ -22,16 +22,16 @@ class CategoryUpdateRequest extends Request
     {
         return [
             'name.required' => '请输入分类名称!',
-            'name.unique'   => '分类名称已经存在!',
+            'name.unique' => '分类名称已经存在!',
         ];
     }
 
     public function getFillData()
     {
         return [
-            'name'      => $this->input('name'),
-            'sort'      => $this->input('sort'),
-            'display'   => $this->input('display', 'N'),
+            'name' => $this->input('name'),
+            'sort' => $this->input('sort'),
+            'display' => $this->input('display', 'N'),
         ];
     }
 }

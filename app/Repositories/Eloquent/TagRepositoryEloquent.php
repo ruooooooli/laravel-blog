@@ -32,9 +32,9 @@ class TagRepositoryEloquent extends BaseRepository implements TagRepository
 
     public function batchDelete($request)
     {
-        $idString   = $request->input('idstring');
-        $idArray    = explode(',', $idString);
-        $items      = $this->findWhereIn('id', array_values($idArray));
+        $idString = $request->input('idstring');
+        $idArray = explode(',', $idString);
+        $items = $this->findWhereIn('id', array_values($idArray));
 
         foreach ($items as $item) {
             $this->delete($item);

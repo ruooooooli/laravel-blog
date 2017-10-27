@@ -58,17 +58,17 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
             throw new Exception('您当前没有权限更新这篇文章!');
         }
 
-        $tags           = explode(',', $input['tags']);
-        $tag            = Tag::whereIn('id', $tags)->get();
-        $published_at   = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
-        $array          = array(
-            'user_id'       => Auth::id(),
-            'category_id'   => $input['category_id'],
-            'title'         => $input['title'],
-            'content'       => (new Markdown())->markdownToHtml($input['markdown-source']),
+        $tags = explode(',', $input['tags']);
+        $tag = Tag::whereIn('id', $tags)->get();
+        $published_at = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
+        $array = array(
+            'user_id' => Auth::id(),
+            'category_id' => $input['category_id'],
+            'title' => $input['title'],
+            'content' => (new Markdown())->markdownToHtml($input['markdown-source']),
             'content_origin'=> $input['markdown-source'],
-            'sort'          => $input['sort'] ?: 255,
-            'published_at'  => $published_at,
+            'sort' => $input['sort'] ?: 255,
+            'published_at' => $published_at,
         );
 
         $post->update($array);
@@ -79,9 +79,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
 
     public function batchDelete($request)
     {
-        $idString   = $request->input('idstring');
-        $idArray    = explode(',', $idString);
-        $items      = $this->findWhereIn('id', array_values($idArray));
+        $idString = $request->input('idstring');
+        $idArray = explode(',', $idString);
+        $items = $this->findWhereIn('id', array_values($idArray));
 
         foreach ($items as $item) {
             $this->delete($item);

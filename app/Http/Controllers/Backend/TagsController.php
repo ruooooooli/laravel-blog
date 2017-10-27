@@ -21,8 +21,8 @@ class TagsController extends Controller
 
     public function index(Request $request)
     {
-        $search     = $request->input('search', '');
-        $tags       = $this->tag->paginate(config('blog.pageSize'));
+        $search = $request->input('search', '');
+        $tags = $this->tag->paginate(config('blog.pageSize'));
 
         return view('backend.tag.index', compact('tags', 'search'));
     }

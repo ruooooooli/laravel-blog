@@ -20,15 +20,15 @@ class PostsController extends Controller
 
     public function __construct(PostRepository $post, CategoryRepository $category, TagRepository $tag)
     {
-        $this->post     = $post;
+        $this->post = $post;
         $this->category = $category;
-        $this->tag      = $tag;
+        $this->tag = $tag;
     }
 
     public function index(Request $request)
     {
-        $search     = $request->input('search', '');
-        $posts      = $this->post->paginate(config('blog.pageSize'));
+        $search = $request->input('search', '');
+        $posts = $this->post->paginate(config('blog.pageSize'));
 
         return view('backend.post.index', compact('posts', 'search'));
     }
@@ -36,7 +36,7 @@ class PostsController extends Controller
     public function create()
     {
         $categories = $this->category->getCategoryList();
-        $tags       = $this->tag->getTagList();
+        $tags = $this->tag->getTagList();
 
         return view('backend.post.create', compact('categories', 'tags'));
     }
@@ -55,8 +55,8 @@ class PostsController extends Controller
     public function edit($id)
     {
         $categories = $this->category->getCategoryList();
-        $tags       = $this->tag->getTagList();
-        $post       = $this->post->find($id);
+        $tags = $this->tag->getTagList();
+        $post = $this->post->find($id);
 
         return view('backend.post.edit', compact('post', 'categories', 'tags'));
     }

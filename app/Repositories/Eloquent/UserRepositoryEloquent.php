@@ -11,8 +11,8 @@ use Prettus\Repository\Criteria\RequestCriteria;
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
     protected $fieldSearchable = [
-        'username'  => 'like',
-        'email'     => 'like',
+        'username' => 'like',
+        'email' => 'like',
     ];
 
     public function model()
@@ -41,7 +41,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
 
         $user->username = $input['username'];
-        $user->email    = $input['email'];
+        $user->email = $input['email'];
 
         $user->update();
 
@@ -50,8 +50,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     private function checkPassword($input)
     {
-        $password           = $input['password'];
-        $passwordConfirm    = $input['password_confirmation'];
+        $password = $input['password'];
+        $passwordConfirm = $input['password_confirmation'];
 
         if (! empty($password)) {
             if (mb_strlen($password) < 6) {
@@ -74,9 +74,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function batchDelete($request)
     {
-        $idString   = $request->input('idstring');
-        $idArray    = explode(',', $idString);
-        $items      = $this->findWhereIn('id', array_values($idArray));
+        $idString = $request->input('idstring');
+        $idArray = explode(',', $idString);
+        $items = $this->findWhereIn('id', array_values($idArray));
 
         foreach ($items as $item) {
             $this->delete($item);

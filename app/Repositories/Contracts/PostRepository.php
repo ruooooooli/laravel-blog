@@ -4,4 +4,7 @@ namespace App\Repositories\Contracts;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 
-interface PostRepository extends RepositoryInterface {}
+interface PostRepository extends RepositoryInterface
+{
+    //
+}

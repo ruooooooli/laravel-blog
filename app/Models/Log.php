@@ -11,5 +11,4 @@ class Log extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [];
-
 }

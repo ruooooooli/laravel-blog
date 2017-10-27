@@ -30,9 +30,9 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-        $credentials        = $request->only(['login', 'password']);
-        $key                = $this->username();
-        $credentials[$key]  = array_pull($credentials, 'login');
+        $credentials = $request->only(['login', 'password']);
+        $key = $this->username();
+        $credentials[$key] = array_pull($credentials, 'login');
 
         try {
             $this->validateLogin($request);
@@ -49,15 +49,15 @@ class LoginController extends Controller
 
     protected function validateLogin(Request $request)
     {
-        $rules = array(
-            'login'     => 'required',
-            'password'  => 'required',
-        );
+        $rules = [
+            'login' => 'required',
+            'password' => 'required',
+        ];
 
-        $messages = array(
-            'login.required'    => '请输入登录账号!',
+        $messages = [
+            'login.required' => '请输入登录账号!',
             'password.required' => '请输入登录密码!',
-        );
+        ];
 
         return $this->validate($request, $rules, $messages);
     }
@@ -82,9 +82,9 @@ class LoginController extends Controller
     protected function createDefaultUser()
     {
         return User::create([
-            'username'  => 'ruooooooli',
-            'email'     => 'ruooooooli@gmail.com',
-            'password'  => bcrypt('admin'),
+            'username' => 'ruooooooli',
+            'email' => 'ruooooooli@gmail.com',
+            'password' => bcrypt('admin'),
         ]);
     }
 
@@ -94,9 +94,9 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        $user               = Auth::user();
-        $user->login_count  += 1;
-        $user->last_login   = Carbon::now();
+        $user = Auth::user();
+        $user->login_count += 1;
+        $user->last_login = Carbon::now();
         $user->update();
 
         return successJson('登录成功!');

@@ -21,7 +21,7 @@ class CategoriesController extends Controller
 
     public function index(Request $request)
     {
-        $search     = $request->input('search', '');
+        $search = $request->input('search', '');
         $categories = $this->category->paginate(config('blog.pageSize'));
 
         return view('backend.category.index', compact('categories', 'search'));

@@ -11,8 +11,8 @@ use App\Repositories\Contracts\CategoryRepository;
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
     protected $fieldSearchable = [
-        'name'  => 'like',
-        'sort'  => 'like',
+        'name' => 'like',
+        'sort' => 'like',
     ];
 
     public function model()
@@ -42,9 +42,9 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
 
     public function batchDelete($request)
     {
-        $idString   = $request->input('idstring');
-        $idArray    = explode(',', $idString);
-        $items      = $this->findWhereIn('id', array_values($idArray));
+        $items = $this->findWhereIn('id', array_values(
+            explode(',', $request->input('idstring'))
+        ));
 
         foreach ($items as $item) {
             $this->delete($item);

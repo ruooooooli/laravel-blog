@@ -14,14 +14,8 @@ use Prettus\Validator\Exceptions\ValidatorException;
 class LogsController extends Controller
 {
 
-    /**
-     * @var LogRepository
-     */
     protected $repository;
 
-    /**
-     * @var LogValidator
-     */
     protected $validator;
 
     public function __construct(LogRepository $repository, LogValidator $validator)
@@ -30,19 +24,12 @@ class LogsController extends Controller
         $this->validator  = $validator;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $logs = $this->repository->all();
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $logs,
             ]);
@@ -51,18 +38,10 @@ class LogsController extends Controller
         return view('logs.index', compact('logs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  LogCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function store(LogCreateRequest $request)
     {
 
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $log = $this->repository->create($request->all());
@@ -73,7 +52,6 @@ class LogsController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
@@ -90,20 +68,11 @@ class LogsController extends Controller
         }
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $log = $this->repository->find($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $log,
             ]);
@@ -112,14 +81,6 @@ class LogsController extends Controller
         return view('logs.show', compact('log'));
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
 
@@ -128,20 +89,10 @@ class LogsController extends Controller
         return view('logs.edit', compact('log'));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  LogUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     */
     public function update(LogUpdateRequest $request, $id)
     {
 
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             $log = $this->repository->update($id, $request->all());
@@ -152,15 +103,12 @@ class LogsController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
                     'message' => $e->getMessageBag()
@@ -171,20 +119,11 @@ class LogsController extends Controller
         }
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'message' => 'Log deleted.',
                 'deleted' => $deleted,

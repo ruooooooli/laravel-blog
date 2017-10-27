@@ -12,9 +12,9 @@ class QueryListener
     public function handle(QueryExecuted $event)
     {
         if (config('app.debug')) {
-            $log        = '';
-            $sql        = $event->sql;
-            $bindings   = $event->bindings;
+            $log = '';
+            $sql = $event->sql;
+            $bindings = $event->bindings;
 
             foreach (explode('?', $sql) as $key => $value) {
                 if (isset($bindings[$key])) {
@@ -28,7 +28,7 @@ class QueryListener
                 }
             }
 
-            Log::info('[' . $event->time . ']:' . $log);
+            Log::info('[' . ($event->time / 1000) . ']:' . $log);
         }
     }
 }

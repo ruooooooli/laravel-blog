@@ -16,7 +16,7 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
 {
     protected $fieldSearchable = [
         'title' => 'like',
-        'sort'  => 'like',
+        'sort' => 'like',
     ];
 
     public function model()
@@ -31,20 +31,20 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
 
     public function create(array $input)
     {
-        $tags           = explode(',', $input['tags']);
-        $tag            = Tag::whereIn('id', $tags)->get();
-        $published_at   = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
-        $array          = array(
-            'user_id'       => Auth::id(),
-            'category_id'   => $input['category_id'],
-            'title'         => $input['title'],
-            'content'       => (new Markdown())->markdownToHtml($input['markdown-source']),
-            'content_origin'=> $input['markdown-source'],
-            'sort'          => $input['sort'] ?: 255,
-            'published_at'  => $published_at,
-        );
+        $tags = explode(',', $input['tags']);
+        $tag = Tag::whereIn('id', $tags)->get();
+        $published_at = Carbon::createFromFormat('Y-m-d', $input['published_at'])->toDateTimeString();
 
-        $post = Post::create($array);
+        $post = Post::create([
+            'user_id' => Auth::id(),
+            'category_id' => $input['category_id'],
+            'title' => $input['title'],
+            'content' => (new Markdown())->markdownToHtml($input['markdown-source']),
+            'content_origin' => $input['markdown-source'],
+            'sort' => $input['sort'] ?: 255,
+            'published_at' => $published_at,
+        ]);
+
         $post->tags()->attach($tags);
 
         return $post;
